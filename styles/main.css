@@ -111,6 +111,9 @@ nav .navbar-nav ul.dropdown-menu .dropdown-header {
   text-transform: uppercase;
   font-weight:bold;
 }
+.sidebar-module img.bg-image {
+  width:100%;
+}
 .sidebar-module .sidebar-container {
   margin:20px;
   padding-bottom:10px;
