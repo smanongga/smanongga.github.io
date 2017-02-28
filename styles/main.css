@@ -117,6 +117,7 @@ nav .navbar-nav ul.dropdown-menu .dropdown-header {
 .sidebar-module .sidebar-container {
   margin:20px;
   padding-bottom:10px;
+  text-align:center;
 }
 .sidebar-module .social-media ol li  {
   display:inline-block;
