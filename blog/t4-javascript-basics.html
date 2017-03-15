@@ -98,16 +98,36 @@
               <h3>Accessing data from arrays</h3>
               <p>
               To access array’s data, you will need to use a number position surrounded by a  square bracket around it. This method is called <strong>Square Bracket Notation</strong>. The first data (Example below is "Spiderman") will start at number 0. </p>
-              <p>var mySuperHero = [“Spiderman” , “Thor” , “Captain America”]</p>
+              <pre><code>
+                var mySuperHero = [“Spiderman” , “Thor” , “Captain America”];
+              </code></pre>
 
               <p>In order to call Captain America, we will use mySuperHero[<strong>2</strong>] since he is in position 2.</p>
 
               <h3>Accessing data from Object</h3>
-              <p>With Object, you will use the name of the data label you want to access. The method is known as <strong>Dot Notation</strong> </p>
+              <p>There are two ways to do this. First one is the above method - Square Bracket Notation. However, rather than specifying a number, you will use the data label.</p>
+              <pre><code>
+                var person = {
+                            "First Name": "Sam",
+                            "Last Name": "Manongga"
+                            };
 
-                <p>var <em>person</em> = {<strong>firstName</strong>: “Sam”, lastName: “Manongga”};</p>
+                            /* To call the value Sam */
+                            person["FirstName"]; // Sam
+            </code></pre>
 
-                <p>In order to access first name's value  - “Sam”, we will use <em>person</em>.<strong>firstName</strong></p>
+              <p>Second method is where you use the name of the data label you want to access. The method is known as <strong>Dot Notation</strong>.</p>
+              <pre><code>
+              var person = {
+                            firstName: “Sam”,
+                            lastName: “Manongga”
+                          };
+
+              /* To call the value Sam */
+
+              person.firstName
+
+                </pre></code>
 
               <h2>Explain what functions are and why they are useful.</h2>
 
