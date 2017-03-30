@@ -55,6 +55,9 @@ nav .navbar-nav ul.dropdown-menu .dropdown-header {
 .blog-post img {
   width:100%;
 }
+.blog-post i {
+  margin-rig
+}
 .blog-post-title  {
   margin:20px 20px 20px 20px;
   font-weight:600;
@@ -66,10 +69,15 @@ nav .navbar-nav ul.dropdown-menu .dropdown-header {
   text-decoration: none;
 }
 .blog-post-meta {
-  margin:20px 20px 20px 20px;
+  margin:0px 0px 20px 20px;
+  display:inline-block;
   font-size:12px;
   color:#888888;
   text-transform: uppercase;
+  width:25%;
+}
+.blog-post-meta i {
+  margin-right:10px;
 }
 .blog-post-entry {
   margin:20px;
