@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>S. Manongga | Blog: Technical Blog - HTML, CSS and DOM Part 2</title>
+    <title>S. Manongga | Blog: Technical Blog - Javascript Basic</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -84,44 +84,71 @@
 <div class="col-sm-8 blog-main">
 
           <div class="blog-post">
-            <h2 class="blog-post-title">Technical Blog - HTML, CSS and DOM Part 2</h2>
+            <h2 class="blog-post-title">Technical Blog - Javascript Basics</h2>
             <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
             By <a href="#">Sam Manongga</a></div>
             <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
-            March 1 2017  </div>
+            March 14 2017  </div>
             <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> Technical Blog
           </div>
-            <img src="../images/blog/website-builder-responsive.jpg" alt="Image of websites on different devices">
+            <img src="../images/blog/i-heart-js.jpg" alt="Image: I heart Javascript.">
             <div class="blog-post-entry">
-              <h2>What is grid based design?</h2>
-              <p>
-              It's a design technique that use a series of horizontal and vertical lines in order to arrange content. It started out with print design but also has been adapted for website design.
-              </p>
-              <p>
-                The aim is to make it easier for designer to keep the design the same across pages.
-              </p>
+              <h2>How does JavaScript compare to HTML and CSS?</h2>
+              <p>Javascript is the third part that makes up a website (at the moment). HTML is a markup language which gives website's content some structure. CSS is the style sheet language which improves the website’s presentation. Javascript provides interactivity for the end user. What I found Javascript different from the other two is that it can store values, create objects, setup re-usable code (function) and handle logic … I’m sure I’m just scratching the surface here.</p>
 
-              <h2>Whats all the hype about responsive webpages?</h2>
-              <p>
-                It allows for website to be viewed properly on devices with different size and screen resolution.
-              </p>
+              <p>A very important part that I have to be aware when using Javascript is that it is case sensitive. E.g: myArray is not equal to MyArray.</p>
 
-              <h2>What is semantic structure?</h2>
-              <p>
-                Its a way to help create meaning to content on webpage by different user agents.
-              </p>
+              <h2>Explain control flow and loops using an example process from everyday life, for example 'waking up' or 'brushing your teeth'.</h2>
 
-              <p>
-                In accessibility, it helps screen reader to navigate the webpage by using the proper heading structure to jump across content.
+              <p><strong>Control Flow  - Checking to see if condition meets the criteria and if criteria met, will direct your result.</strong><br />
+                Before you can get a loan from a bank, you will need to convince the bank that you are a trustworthy person who is able to pay the loan back.  At the bank, different departments will check your application and check off if individual criteria is met. E.g: Are you old enough to get a loan? If not, do you have a co-signature as a guarantor... the list goes on.
               </p>
+              <p><strong>Loops - Doing same thing until it meets goal.</strong><br />
+                A swimmer who is doing freestyle for 1000 meter in a 50 meter pool. The swimmer will do the same movement where after three strokes he will come up for breath. At every 50 meter, he will flip and swim the other direction until he reaches 1000 meter.</p>
 
+
+              <h2>Explain the difference between accessing data from arrays and objects.</h2>
+
+
+              <h3>Accessing data from arrays</h3>
               <p>
-                For developer, it helps them clearly see the outline the HTML document without making sense of the DIV ID or Class name.
-              </p>
-              <h2>Any other points you found interesting and want to reflect on?</h2>
-              <p>
-                I have come back to my blog as I get to learn more theories and best practices and try to apply what I learn to it. For instance, I will need to update my website because Bootstrap doesn’t include HTML5 semantic markup.
-              </p>
+              To access array’s data, you will need to use a number position surrounded by a  square bracket around it. This method is called <strong>Square Bracket Notation</strong>. The first data will start at number 0. </p>
+              <pre><code>
+                var mySuperHero = [“Spiderman” , “Thor” , “Captain America”];
+              </code></pre>
+
+              <p>In order to call Captain America, we will use mySuperHero[<strong>2</strong>] since he is in position 2.</p>
+
+              <h3>Accessing data from Object</h3>
+              <p>There are two ways to do this. First one is the above method - Square Bracket Notation. However, rather than specifying a number, you will use the data label.</p>
+              <pre><code>
+                var person = {
+                            "First Name": "Sam",
+                            "Last Name": "Manongga"
+                            };
+
+                            /* To call the value Sam */
+                            person["FirstName"]; // Sam
+            </code></pre>
+
+              <p>Second method is where you use the name of the data label you want to access. The method is known as <strong>Dot Notation</strong>.</p>
+              <pre><code>
+              var person = {
+                            firstName: “Sam”,
+                            lastName: “Manongga”
+                          };
+
+              /* To call the value Sam */
+
+              person.firstName
+
+                </pre></code>
+
+              <h2>Explain what functions are and why they are useful.</h2>
+
+              <p>Functions in Javascript allow you to group a set of code together and to re-use the grouped code in different parts of your program. This will make your code  more manageable and structured. Example: In case there is an error, you can do faster debugging by pinpointing the faulty function instead of reading line by line.</p>
+
+
           </div>
           </div><!-- /.blog-post -->
 
