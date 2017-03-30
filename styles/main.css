@@ -55,6 +55,9 @@ nav .navbar-nav ul.dropdown-menu .dropdown-header {
 .blog-post img {
   width:100%;
 }
+.blog-post i {
+  margin-rig
+}
 .blog-post-title  {
   margin:20px 20px 20px 20px;
   font-weight:600;
@@ -66,10 +69,15 @@ nav .navbar-nav ul.dropdown-menu .dropdown-header {
   text-decoration: none;
 }
 .blog-post-meta {
-  margin:20px 20px 20px 20px;
+  margin:0px 0px 20px 20px;
+  display:inline-block;
   font-size:12px;
   color:#888888;
   text-transform: uppercase;
+  width:25%;
+}
+.blog-post-meta i {
+  margin-right:10px;
 }
 .blog-post-entry {
   margin:20px;
@@ -129,5 +137,31 @@ nav .navbar-nav ul.dropdown-menu .dropdown-header {
 }
 footer {
   background:#222222;
-  padding:60px;
+  color:#ffffff;
+  padding-bottom:20px;
+  padding-top:20px;
+}
+footer .container {
+  margin-top:0px;
+}
+footer h2 {
+  font-size:18px;
+  border-bottom:1px solid #444;
+  padding-bottom:10px;
+}
+footer ul.menu {
+  list-style-type:none;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-padding-start: 0px;
+}
+footer ul.menu li {
+  width:32%;
+  display:inline-block;
+  font-size:20px;
+  text-align:center;
+}
+footer ul.menu li a {
+  color:#fff;
+  text-transform: uppercase;
 }
