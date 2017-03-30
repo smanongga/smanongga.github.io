@@ -129,5 +129,31 @@ nav .navbar-nav ul.dropdown-menu .dropdown-header {
 }
 footer {
   background:#222222;
-  padding:60px;
+  color:#ffffff;
+  padding-bottom:20px;
+  padding-top:20px;
+}
+footer .container {
+  margin-top:0px;
+}
+footer h2 {
+  font-size:18px;
+  border-bottom:1px solid #444;
+  padding-bottom:10px;
+}
+footer ul.menu {
+  list-style-type:none;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+    -webkit-padding-start: 0px;
+}
+footer ul.menu li {
+  margin-right:30px;
+  display:inline-block;
+  font-size:20px;
+
+}
+footer ul.menu li a {
+  color:#fff;
+  text-transform: uppercase;
 }
