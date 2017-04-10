@@ -92,82 +92,65 @@
 <div class="col-sm-8 blog-main">
 
           <div class="blog-post">
-            <h2 class="blog-post-title">Technical Blog - Javascript Language</h2>
+            <h2 class="blog-post-title">Technical Blog - Javascript Scope</h2>
             <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
             By <a href="#">Sam Manongga</a></div>
             <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
-            March 29 2017  </div>
+            April 10 2017  </div>
             <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> Technical Blog
           </div>
-            <img src="../images/blog/a-parentheses.jpg" alt="Image: Paranthese, Bracket, and Braces">
+            <img src="../images/blog/js-scope.jpg" alt="Image: JS - Understanding Javascript Scope">
             <div class="blog-post-entry">
-              <h2>Parentheses - ()</h2>
-              <p>It can be use to group expressions</p>
+              <h2>Explain to a non-tech friend what Scope is</h2>
+              <p>In a  non-programming context, a scope is similar to how laws/regulations work in a country. The central government defines a rule that you have to be 21 years old to vote. This rule applies to every level of local government -  states > city > town > borough > neighborhood. This is what we call a Global Scope. When a lower level government defines a rule, it is called Local Scope because local government can’t dictate nationally and same rule can have different meaning to other states. Example: State of New York, when it comes to getting your learner permit, you have to be 16 years old. However, the state of California, the legal age is 15 1/2. </p>
+              <h2>How does it work in JavaScript</h2>
+              <p>In Javascript term, we are talking about the visibility and accessibility of your variables/ functions/ objects inside the program. Knowing their scope helps to prevent bugs and unexpected behavior.</p>
+              <h3>Global Scope</h3>
+              <p>Anything that isn’t declared inside a function will automatically have global scope. It exists as long as the program runs and is accessible within function.</p>
+              <b>Variable</b>
               <pre><code>
-                var sum = (4 / 2 * 4) / 2
+                var name = “Sam”;
 
-              </code></pre>
-              <p>It is to contain expression </p>
-              <pre><code>
-                for (var i = 0; i > 100; i++) { return i++; }
+                function helloName() {
+                    return name;
+                  }
 
+                helloName(); // Sam
               </code></pre>
-              <p>A place for parameters </p>
+              <b>Function</b>
               <pre><code>
-                function (a, b) { 
-                  return a + b;
+                function helloName() {
+                  console.log('Sam');
+                  }
+
+                function executeHelloName() {
+                  helloName();
+                  }
+
+                executeHelloName(); // Sam
+              </code></pre>
+              <h3>Local Scope</h3>
+              <p>Anything that lives inside a function will only exist as long the function is called and will be deleted after the function is finished. It can also have the same name and each retains its own value. Modifying one doesn’t modify the others.</p>
+              <pre><code>
+                var name = 'Global Scope';
+
+                function helloLocalScope() {
+                  var name = 'Local Scope';
+                  console.log(name);
                 }
 
+                function helloJavaScript() {
+                  var name = 'Javascript';
+                  console.log(name);
+                }
+
+                //We will call out the same variable called name
+                helloLocalScope(); // Local Scope
+                helloJavaScript(); // Javascript
+                console.log(name); // Global Scope
               </code></pre>
-              <h2>Brackets - []</h2>
+              <p>Scope of inner function contains the scope of the parent function even if the parent function is finished.</p>
 
-              <p>To specify the location of an array or to define datatype</p>
-              <pre><code>
-              var myArray = [0, 1, 2, 3, 4]
-
-              </code></pre>
-              <p>It can also be used in grabbing the key-value in Object/properties if the key is a string </p>
-              <pre><code>
-                var person = { "First Name": "Sam", "Last Name": "Manongga"};
-
-                /* To call the value Sam */
-                person["FirstName"]; // Sam
-              </code></pre>
-
-              <h2>Braces - {}</h2>
-
-              <p>Braces is used to define the beginning and end of functions or statement like for ( ) loop and if() statement</p>
-              <pre><code>
-                  for (var i = 0; i > 100; i++) { 	return i++; 	}
-
-              </code></pre>
-              <p>It can also be used to store key-value pairs in object/properties </p>
-              <pre><code>
-                var board = {
-                  cells: [
-                  {row:0,col:0, isMine:true, hidden:true},
-                  {row:0,col:1, isMine:false, hidden:true},
-                  {row:1,col:0, isMine:false, hidden:true},
-                  {row:1,col:1, isMine:true, hidden:true},
-                  {row:2,col:0, isMine:false, hidden:true},
-                  {row:2,col:1, isMine:false, hidden:true},
-                };
-
-              </code></pre>
-              <h2>Single Quotes - ‘’ </h2>
-
-              <p>Stores a series of characters (string)</p>
-              <pre><code>
-                  var myString = “Javascript Language”
-
-              </code></pre>
-
-              <h2>Double Quotes - “” </h2>
-
-              <p>Same as single quotes but it's easier to escape apostrophes.</p>
-              <pre><code>
-                  var myString = “You’re correct!”
-              </code></pre>
 
           </div>
           </div><!-- /.blog-post -->
