@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>S. Manongga | Blog: Search Inside Yourself - Emotional Intelligence</title>
+    <title>S. Manongga | Blog: Technical Blog - Javascript Scope</title>
 
     <!-- Bootstrap -->
     <!-- Latest compiled and minified CSS -->
@@ -79,6 +79,7 @@
                 <li class="dropdown-header">Sprint - Week 8</li>
                 <li><a href="t6-scope.html">Technical Blog - Javascript Language</a></li>
                 <li><a href="#">Cultural Blog - Empathy</a></li>
+
               </ul>
             </li>
           </ul>
@@ -91,21 +92,83 @@
 <div class="col-sm-8 blog-main">
 
           <div class="blog-post">
-            <h2 class="blog-post-title">Search Inside Yourself - Emotional Intelligence</h2>
+            <h2 class="blog-post-title">Technical Blog - Javascript Language</h2>
             <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
             By <a href="#">Sam Manongga</a></div>
             <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
-            March 1 2017  </div>
-            <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> Cultural Blog
+            March 29 2017  </div>
+            <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> Technical Blog
           </div>
-            <img src="../images/blog/emotional-intelligence.jpg" alt="Image of two person representing emotional intelligence.">
+            <img src="../images/blog/a-parentheses.jpg" alt="Image: Paranthese, Bracket, and Braces">
             <div class="blog-post-entry">
-              <h2>What learnings did you take from the chapter?</h2>
-              <p>Emotional intelligence was popularized by Daniel Golem. It teaches us on how to manage emotions and behavior that will lead to a positive outcome personally and professionally.</p>
+              <h2>Parentheses - ()</h2>
+              <p>It can be use to group expressions</p>
+              <pre><code>
+                var sum = (4 / 2 * 4) / 2
 
+              </code></pre>
+              <p>It is to contain expression </p>
+              <pre><code>
+                for (var i = 0; i > 100; i++) { return i++; }
 
-              <h2>How did you find the two minutes of mindfulness?</h2>
-              <p>Not quite sure if meditation is for me but I like to use it as a way to train my focus / clear my thoughts before I do things that require concentration - E.g: studying.</p>
+              </code></pre>
+              <p>A place for parameters </p>
+              <pre><code>
+                function (a, b) { 
+                  return a + b;
+                }
+
+              </code></pre>
+              <h2>Brackets - []</h2>
+
+              <p>To specify the location of an array or to define datatype</p>
+              <pre><code>
+              var myArray = [0, 1, 2, 3, 4]
+
+              </code></pre>
+              <p>It can also be used in grabbing the key-value in Object/properties if the key is a string </p>
+              <pre><code>
+                var person = { "First Name": "Sam", "Last Name": "Manongga"};
+
+                /* To call the value Sam */
+                person["FirstName"]; // Sam
+              </code></pre>
+
+              <h2>Braces - {}</h2>
+
+              <p>Braces is used to define the beginning and end of functions or statement like for ( ) loop and if() statement</p>
+              <pre><code>
+                  for (var i = 0; i > 100; i++) { 	return i++; 	}
+
+              </code></pre>
+              <p>It can also be used to store key-value pairs in object/properties </p>
+              <pre><code>
+                var board = {
+                  cells: [
+                  {row:0,col:0, isMine:true, hidden:true},
+                  {row:0,col:1, isMine:false, hidden:true},
+                  {row:1,col:0, isMine:false, hidden:true},
+                  {row:1,col:1, isMine:true, hidden:true},
+                  {row:2,col:0, isMine:false, hidden:true},
+                  {row:2,col:1, isMine:false, hidden:true},
+                };
+
+              </code></pre>
+              <h2>Single Quotes - ‘’ </h2>
+
+              <p>Stores a series of characters (string)</p>
+              <pre><code>
+                  var myString = “Javascript Language”
+
+              </code></pre>
+
+              <h2>Double Quotes - “” </h2>
+
+              <p>Same as single quotes but it's easier to escape apostrophes.</p>
+              <pre><code>
+                  var myString = “You’re correct!”
+              </code></pre>
+
           </div>
           </div><!-- /.blog-post -->
 

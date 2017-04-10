@@ -164,3 +164,17 @@ footer ul.menu li a {
   color:#fff;
   text-transform: uppercase;
 }
+.flex-grid-fifth {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-grid-fifth .col {
+  width: 20%;
+  padding:10px;
+}
+.flex-grid-fifth img {
+  border:1px solid #BBBBBB;
+}
+.flex-grid-fifth .project-tag {
+  font-size:12px;
+}
