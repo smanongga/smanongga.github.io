@@ -8,6 +8,8 @@ exports.up = function(knex, Promise) {
   table.foreign('author').references('users.id')
   table.string('title')
   table.text('body', 'longtext')
+  table.text('summary', 'mediumtext')
+  table.string('image')
   table.string('status')
   table.dateTime('published_date')
 })
