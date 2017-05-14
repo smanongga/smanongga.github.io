@@ -1,1 +1,0 @@
-# smanongga.github.io
