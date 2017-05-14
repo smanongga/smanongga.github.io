@@ -1,13 +1,19 @@
 // Update with your config settings.
+var dotenv = require('dotenv')
+
+dotenv.load()
 
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'mysql',
     connection: {
-      filename: './dev.sqlite3'
-    },
-    useNullAsDefault: true
+      socketPath : process.env.DB_SOCKET,
+      user     : process.env.DB_USER,
+      password : process.env.DB_PASS,
+      database : process.env.DB_NAME,
+      charset  : 'utf8'
+    }
   },
 
   test: {
