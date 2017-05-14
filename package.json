@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate-knex",
+  "name": "smanongga.github.io",
   "version": "0.1.2",
-  "description": "Express boilerplate with Knex.js",
+  "description": "Turning static blog to a small CMS",
   "main": "index.js",
   "scripts": {
     "knex": "knex",
