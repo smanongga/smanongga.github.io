@@ -8,6 +8,7 @@ var index = require('./routes/index')
 
 var app = express()
 
+
 // Middleware
 
 app.engine('hbs', hbs({extname: 'hbs'}))
