@@ -1,6 +1,6 @@
 
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('taxonomy', function (table) {
+  return knex.schema.createTable('taxonomy_vocabulary', function (table) {
     table.increments('id').primary()
     table.string('title')
     table.text('description', 'mediumtext')
