@@ -8,11 +8,11 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
-      socketPath : process.env.DB_SOCKET,
-      user     : process.env.DB_USER,
-      password : process.env.DB_PASS,
-      database : process.env.DB_NAME,
-      charset  : 'utf8'
+      socketPath: process.env.DB_SOCKET,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
+      charset: 'utf8'
     }
   },
 
@@ -28,7 +28,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
@@ -40,4 +40,4 @@ module.exports = {
     }
   }
 
-};
+}
