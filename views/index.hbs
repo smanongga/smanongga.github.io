@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>EDA Phase 1 Express Boilerplate</title>
-  </head>
-  <body>
-    <ul>
-    {{#each users}}
-      <li>{{name}} ({{email}})</li>
-    {{/each}}
-    </ul>
-  </body>
-</html>
+{{> header}}
+<div class="container">
+      <div class="col-sm-8 blog-main">
+        {{> blog_entries}}
+      </div>
+      <div class="col-sm-4 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            {{> about_me}}
+          </div>
+          <div class="sidebar-module">
+            {{> social_media}}
+          </div>
+      </div>
+</div> <!-- / .container -->
+{{> footer}}
