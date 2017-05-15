@@ -1,19 +1,19 @@
-var path = require('path')
+const path = require('path')
 
-var express = require('express')
-var bodyParser = require('body-parser')
-var hbs = require('express-handlebars')
+const express = require('express')
+const bodyParser = require('body-parser')
+const hbs = require('express-handlebars')
 
-var index = require('./routes/index')
+const index = require('./routes/index')
 
-var app = express()
-
+const app = express()
 
 // Middleware
 
 app.engine('hbs', hbs({extname: 'hbs'}))
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'views'))
+app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // Routes
