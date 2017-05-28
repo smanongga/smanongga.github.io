@@ -1,0 +1,38 @@
+{{> header}}
+<div class="container">
+  <h2>Admin: {{this.siteTitle}}</h2>
+  <form>
+  <label>Bulk Operation Option</label>
+  <select>
+  <option value="publish">Publish</option>
+  <option value="unpublish">Unpublish</option>
+  <option value="delete">Delete</option>
+</select>
+<input type="submit" class="btn-primary" value="Apply">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Status</th>
+        <th>Author</th>
+        <th>Published Date</th>
+        <th>Operation</th>
+      </tr>
+    </thead>
+    <tbody>
+  {{#each content}}
+   <tr>
+     <td><input type="checkbox" value="{{contentId}}"></td>
+     <td><a href=/{{type}}/{{slug}}>{{title}}</a></td>
+     <td>{{status}}</td>
+     <td>{{name}}</td>
+     <td>{{published_date}}</td>
+     <td><center><a class="btn btn-primary btn-sm" href="/{{type}}/{{slug}}">Edit</a> <a class="btn btn-danger btn-sm" href="/{{type}}/{{slug}}">Delete</a></center></td>
+  </tr>
+  {{/each}}
+</tbody>
+</table>
+</form>
+</div> <!-- / .container -->
+{{> footer}}

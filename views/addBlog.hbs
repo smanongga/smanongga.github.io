@@ -1,0 +1,58 @@
+{{> header}}
+<script type="text/javascript">
+$(document).ready(function(){
+$('input.typeahead').typeahead({
+name: 'typeahead',
+remote: 'http://localhost:3000/search?key=%QUERY',
+limit: 10
+});
+});
+</script>
+<div class="container">
+  <h2>Create a Blog</h2>
+<form class="" action="/blog/add" method="POST"  enctype="multipart/form-data">
+   <div class="form-group">
+  <label>Title</label>
+  <input type="text" name="title" value="{{title}}" class="form-control" required>
+</div>
+ <div class="form-group">
+  <label>Image</label>
+  <input type="file" name="image" size="50" value="{{image}}" class="form-control" >
+</div>
+ <div class="form-group">
+  <label>Summary</label>
+  <textarea type="text" name="summary" value="" class="form-control"> {{summary}}</textarea>
+</div>
+ <div class="form-group">
+  <label>Body</label>
+  <textarea name="body" id="body" type="text" value="" class="form-control">{{body}}</textarea>
+  <script>
+               // Replace the <textarea id="editor1"> with a CKEditor
+               // instance, using default configuration.
+               CKEDITOR.replace( 'body' );
+           </script>
+</div>
+ <div class="form-group">
+  <label>Tags</label>
+  <input type="text" name="tags" value="{{tags}}" class="form-control">
+</div>
+ <div class="form-group">
+  <label>Author</label>
+  <input class="typeahead tt-query" spellcheck="false" value="{{profile_id}}" autocomplete="off" name="typeahead" type="text" />
+</div>
+<div class="form-group">
+ <label>Published Options</label>
+ <select name="status" class="form-control" value="{{status}}">
+   <option value="draft">Draft</option>
+   <option value="published">Published</option>
+   <option value="unpublished">Unpublished</option>
+ </select>
+</div>
+<div class="form-group">
+ <label>Published Date</label>
+   <input type="date" class="form-control" name="publishedDate" value="{{published_date}}">
+</div>
+  <input type="submit" name="add" value="Submit" class="btn btn-primary">
+</form>
+</div> <!-- / .container -->
+{{> footer}}
