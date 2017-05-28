@@ -1,117 +1,18 @@
+{{#each blog}}
 <div class="blog-post">
-  <h2 class="blog-post-title"><a class="blog" href="blog/c7-motivation.html">Motivation and Purpose
+ <h2 class="blog-post-title"><a class="blog" href="/blogs/{{slug}}">{{title}}</a></h2>
+<div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+By <a href="/users/{{profile_id}}">{{first_name}} {{last_name}}</a></div>
+<div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
+{{published_date}}</div>
 
-</a></h2>
-  <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
-  By <a href="#">Sam Manongga</a></div>
-  <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
-  April 11 2017  </div>
-  <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> Cultural Blog
-  </div>
-  <a href="blog/c7-motivation.html"><img src="images/blog/what-motivates-us.jpg" alt="Image: Man looking up a hill with a trophy at the top."></a>
-  <div class="blog-post-entry">
-  <p>Motivation: A reason or reasons for acting or behaving in a particular way. Purpose: a person's sense of resolve or determination.</p>
-  <hr>
-  <a class="read-more" href="blog/c7-motivation.html">READ MORE &raquo;</a>
-  </div>
-</div><!-- /.blog-post -->
-
-
-<div class="blog-post">
- <h2 class="blog-post-title"><a class="blog" href="blog/t7-scope.html">Javascript Scope</a></h2>
- <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
- By <a href="#">Sam Manongga</a></div>
- <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
- April 10 2017  </div>
- <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> Cultural Blog
- </div>
- <a href="blog/t7-scope.html"><img src="images/blog/js-scope.jpg" alt="Image: JS - Understanding Javascript Scope"></a>
- <div class="blog-post-entry">
- <p>Understanding Javascript Scope will help you develop cleaner code and stopping the program from doing unexpected behavior.</p>
- <hr>
- <a class="read-more" href="blog/t7-scope.html">READ MORE &raquo;</a>
- </div>
-</div><!-- /.blog-post -->
-
-
-<div class="blog-post">
- <h2 class="blog-post-title"><a class="blog" href="blog/c8-connecting.html">Empathy</a></h2>
- <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
- By <a href="#">Sam Manongga</a></div>
- <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
- April 10 2017  </div>
- <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i>Cultural Blog
- </div>
- <a href="blog/c8-connecting.html"><img src="images/blog/cat-mouse-empathy.jpg" alt="Image: Woman teaches cat about empathy."></a>
- <div class="blog-post-entry">
- <p>How to develope empathy through understanding and connecting with others.
- <hr>
- <a class="read-more" href="blog/c8-connecting">READ MORE &raquo;</a>
- </div>
-</div><!-- /.blog-post -->
-
-
-<div class="blog-post">
- <h2 class="blog-post-title"><a class="blog" href="blog/c6-control.html">Emotional Control and Response</a></h2>
-   <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
-   By <a href="#">Sam Manongga</a></div>
-   <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
-   March 29 2017  </div>
-   <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> Cultural Blog
- </div>
-   <a href="blog/c6-control.html"><img src="images/blog/frustrations-solutions.jpg" alt="Image: Programmer frustrated with his work."></a>
-   <div class="blog-post-entry">
-   <p>Recognizing what triggers your frustration and how to best deal with it will help you along way. </p>
-   <hr>
-   <a class="read-more" href="blog/c6-control.html">READ MORE &raquo;</a>
-   </div>
- </div><!-- /.blog-post -->
-
-<div class="blog-post">
- <h2 class="blog-post-title"><a class="blog" href="blog/t6-js-language.html">Javascript Language</a></h2>
- <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
- By <a href="#">Sam Manongga</a></div>
- <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
- March 29 2017  </div>
- <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> Technical Blog
+<div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> {{tags}}
 </div>
-   <a href="blog/t6-js-language.html"><img src="images/blog/a-parentheses.jpg" alt="Image: Paranthese, Bracket, and Braces"></a>
-   <div class="blog-post-entry">
-   <p>Like in many programming languages, Javascript uses alot of sysmbols like (), {}, etc. Explain to your non-tech friends what they are and their functions. </p>
-   <hr>
-   <a class="read-more" href="blog/t6-js-language.html">READ MORE &raquo;</a>
-   </div>
-</div><!-- /.blog-post -->
-
-
-<div class="blog-post">
-   <h2 class="blog-post-title"><a class="blog" href="blog/c5-self-confidence.html">Mindfulness and Self Awareness</a></h2>
-   <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
-   By <a href="#">Sam Manongga</a></div>
-   <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
-   March 29 2017  </div>
-   <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> Cultural Blog
- </div>
-   <a href="blog/c5-self-confidence.html"><img src="images/blog/regain-your-self-confidence.jpg" alt="Image: A person feeling triumphant."></a>
-   <div class="blog-post-entry">
-   <p>With understanding of mindfulness, a person is able to look at their own strengths, weaknesses and emotions without judgement. After that, they can get a more accurate picture of themselves without being clouded by distractions or feelings.</p>
-   <hr>
-   <a class="read-more" href="blog/c5-self-confidence.html">READ MORE &raquo;</a>
- </div>
-</div><!-- /.blog-post -->
-
-<div class="blog-post">
- <h2 class="blog-post-title"><a class="blog" href="blog/t5-problem-solving.html">Problem Solving Techniques</a></h2>
- <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
- By <a href="#">Sam Manongga</a></div>
- <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
- March 29 2017  </div>
- <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> Technical Blog
-</div>
- <a href="blog/t5-problem-solving.html"><img src="images/blog/collaborative-problem-solving.jpg" alt="Image: Group of people working together on solving a problem"></a>
- <div class="blog-post-entry">
- <p>Knowing problem solving techniques is a step of becoming a competent developer.</p>
- <hr>
- <a class="read-more" href="blog/t5-problem-solving.html">READ MORE &raquo;</a>
+<a href="/blogs/{{slug}}"><img src="{{image}}" alt="{{title}}"></a>
+<div class="blog-post-entry">
+<p>{{summary}}</p>
+<hr>
+<a class="read-more" href="/blogs/{{slug}}">READ MORE &raquo;</a>
 </div>
 </div><!-- /.blog-post -->
+{{/each}}
