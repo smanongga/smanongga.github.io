@@ -108,4 +108,13 @@ router.get('/blog/:id', function (req, res) {
   })
 })
 
+// Edit blog router
+router.get('/blog/:id/edit', function (req, res) {
+  const id = req.params.id
+  db.getBlogPost(id, req.app.get('connection'))
+  .then((result) => {
+    res.render('addBlog', result[0])
+  })
+})
+
 module.exports = router
