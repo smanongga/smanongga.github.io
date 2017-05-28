@@ -71,6 +71,20 @@ router.get('/blog', function (req, res) {
   })
 })
 
+// Projects section - URL - /projects
+router.get('/projects', function (req, res) {
+  db.getProjects(req.app.get('connection'))
+  .then(results => {
+    const viewData = {
+      project: results
+    }
+    res.render('projectPost', viewData)
+  })
+  .catch(function (err) {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
+  })
+})
+
 // BLOG ROUTER
 
 // Add blog router
