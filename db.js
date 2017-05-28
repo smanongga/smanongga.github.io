@@ -2,7 +2,8 @@ module.exports = {
   getRecentBlogs: getRecentBlogs,
   getOldBlogs: getOldBlogs,
   addBlogPost: addBlogPost,
-  getBlogPost: getBlogPost
+  getBlogPost: getBlogPost,
+  editBlogPost: editBlogPost
 }
 
 // ADMIN SECTION SQL
@@ -69,6 +70,17 @@ function getBlogPost (blogSlug, connection) {
 }
 
 // Edit Blog
+function editBlogPost (id, connection) {
+  return connection('blogs')
+  .where('id', id)
+  .update()
+  .then((result) => {
+    const id = result
+    return connection('pages')
+    .where('id', id)
+    .select()
+  })
+}
 
 // PROJECTS CONTENT TYPE SQL
 
