@@ -1,6 +1,6 @@
 # smanongga.github.io
 
-version 2.0 is about turning static my blog into tiny CMS using below technologies
+version 2.0 is about turning my static blog into tiny CMS using below technologies
 
 Phase 1 boilerplate project with:
 
