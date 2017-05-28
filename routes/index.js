@@ -47,9 +47,22 @@ router.get('/', function (req, res) {
 // Blog section - URL - /blog
 router.get('/blog', function (req, res) {
   db.getOldBlogs(req.app.get('connection'))
-  .then(results => {
+  .then((results) => {
     const viewData = {
-      blog: results
+      blog: []
+    }
+    for (var i = 0; i < results.length; i++) {
+      const blogEntry = {
+        title: results[i].title,
+        published_date: dateFormat(results[i].published_date, 'mmmm dd yyyy'),
+        image: results[i].image,
+        summary: results[i].summary,
+        first_name: results[i].first_name,
+        last_name: results[i].last_name,
+        profile_id: results[i].profile_id,
+        tags: results[i].tags,
+        slug: results[i].slug}
+      viewData.blog.push(blogEntry)
     }
     res.render('index', viewData)
   })
