@@ -71,6 +71,20 @@ router.get('/blog', function (req, res) {
   })
 })
 
+// Projects section - URL - /projects
+router.get('/projects', function (req, res) {
+  db.getProjects(req.app.get('connection'))
+  .then(results => {
+    const viewData = {
+      project: results
+    }
+    res.render('projectPost', viewData)
+  })
+  .catch(function (err) {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
+  })
+})
+
 // BLOG ROUTER
 
 // Add blog router
@@ -128,6 +142,33 @@ router.get('/blog/:id/edit', function (req, res) {
   .then((result) => {
     console.log(result)
     res.render('addBlog', result[0])
+  })
+})
+
+//  PROJECT ROUTERS
+
+// Add project router
+router.get('/projects/add', function (req, res) {
+  res.render('addProject')
+})
+
+router.post('/project/add', function (req, res) {
+  const title = req.params.title
+  const description = req.params.title
+  const goals = req.params.goals
+  const requirements = req.params.requirements
+  const outcome = req.params.outcome
+  const author = req.params.typeahead
+  const status = req.params.status
+  const today = new Date()
+  const date = dateFormat(today, 'yyyy-mm-dd 08:00:00')
+
+  db.addProjectPost(title, description, goals, requirements, outcome, author, date, status, req.app.get('connection'))
+  .then(results => {
+    res.redirect(`/page/${results[0].id}`)
+  })
+  .catch(function (err) {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
   })
 })
 
