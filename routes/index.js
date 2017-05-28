@@ -172,6 +172,19 @@ router.post('/project/add', function (req, res) {
   })
 })
 
+// Get project router
+router.get('/projects/:id', function (req, res) {
+  const id = req.params.id
+
+  db.getProjectPost(id, req.app.get('connection'))
+  .then((result) => {
+    res.render('pagePost', result[0])
+  })
+  .catch(function (err) {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
+  })
+})
+
 //  HELPER ROUTER
 router.get('/search', function (req, res) {
   var author = req.query.key
