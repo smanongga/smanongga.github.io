@@ -1,6 +1,7 @@
 module.exports = {
   getRecentBlogs: getRecentBlogs,
   getOldBlogs: getOldBlogs,
+  getProjects: getProjects,
   addBlogPost: addBlogPost,
   getBlogPost: getBlogPost,
   editBlogPost: editBlogPost,
@@ -43,6 +44,12 @@ function getOldBlogs (connection) {
 }
 
 // Get list of project - URL - /projects
+function getProjects (connection) {
+  return connection('projects')
+  .join('taxonomy_vocabulary', 'taxonomy_vocabulary.id', 'projects.tags')
+  .select('projects.title as projectTitle', 'projects.description as projectDescription', 'goals', 'requirements', 'outcome', 'status', 'published_date')
+  .orderByRaw('projects.id DESC')
+}
 
 // BLOG SQL
 
