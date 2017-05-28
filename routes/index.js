@@ -117,4 +117,19 @@ router.get('/blog/:id/edit', function (req, res) {
   })
 })
 
+//  HELPER ROUTER
+router.get('/search', function (req, res) {
+  var author = req.query.key
+  db.getAuthor(author, req.app.get('connection'))
+  .then(function (results) {
+    var data = []
+    for(prop in results) {
+      data.push(results[prop].name)
+    }
+    res.end(JSON.stringify(data))
+  })
+  .catch(function (err) {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
+  })
+})
 module.exports = router
