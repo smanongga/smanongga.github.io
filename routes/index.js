@@ -86,4 +86,26 @@ router.post('/blog/add', upload.single('image'), function (req, res) {
   })
 })
 
+// Get blog router
+router.get('/blog/:id', function (req, res) {
+  var blogSlug = Number(req.params.id)
+  db.getBlogPost(blogSlug, req.app.get('connection'))
+  .then((result) => {
+    const viewData = {
+      title: result[0].title,
+      body: result[0].body,
+      date: dateFormat(result[0].published_date, 'mmmm dd yyyy'),
+      image: result[0].image,
+      first_name: result[0].first_name,
+      last_name: result[0].last_name,
+      profile_id: result[0].profile_id,
+      tags: result[0].tags
+    }
+    res.render('blogPost', viewData)
+  })
+  .catch(function (err) {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
+  })
+})
+
 module.exports = router
