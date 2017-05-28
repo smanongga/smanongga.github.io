@@ -1,15 +1,18 @@
-# Boilerplate: Knex.js
+# smanongga.github.io
+
+version 2.0 is about turning static my blog into tiny CMS using below technologies
 
 Phase 1 boilerplate project with:
 
  - Express
  - Knex
- - SQLite3
+ - MySQL
  - Express Handlebars
  - body-parser
  - AVA
  - Node Inspector
- - nodemon
+ - Multer
+ - Nodemon
 
 
 ## Install
