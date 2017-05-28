@@ -4,6 +4,7 @@ module.exports = {
   addBlogPost: addBlogPost,
   getBlogPost: getBlogPost,
   editBlogPost: editBlogPost,
+  addProjectPost: addProjectPost,
   getAuthor: getAuthor
 }
 
@@ -86,7 +87,21 @@ function editBlogPost (blogSlug, connection) {
 // PROJECTS CONTENT TYPE SQL
 
 // Add Project
-
+function addProjectPost (title, description, goals, requirements, outcome, author, status, date, connection) {
+  return connection('users')
+  .where('name', '=', author)
+  .then((result) => {
+    const authorId = result[0].id
+    return connection('projects')
+    .insert({ 'title': title, 'description': description, 'goals': goals, 'requirements': requirements, 'outcome': outcome, 'status': status, 'published_date': '2017-04-12 08:00:00', 'type': 'projects', 'author': authorId })
+    .then((result) => {
+      const id = result
+      return connection('projects')
+      .where('id', id)
+      .select()
+    })
+  })
+}
 // Get Project
 
 // Edit Project
