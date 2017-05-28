@@ -1,6 +1,8 @@
 module.exports = {
   getRecentBlogs: getRecentBlogs,
-  getOldBlogs: getOldBlogs
+  getOldBlogs: getOldBlogs,
+  addBlogPost: addBlogPost,
+  getBlogPost: getBlogPost
 }
 
 // ADMIN SECTION SQL
@@ -40,8 +42,31 @@ function getOldBlogs (connection) {
 // BLOG SQL
 
 // Add Blog
+function addBlogPost (title, slug, body, author, summary, image, status, date, tags, connection) {
+  return connection('users')
+  .where('name', '=', author)
+  .then((result) => {
+    const authorId = result[0].id
+    return connection('blogs')
+    .insert({'title': title, 'body': body, 'author': authorId, 'summary': summary, 'image': image, 'status': status, 'published_date': date, 'tags': tags, 'type': 'blog', 'slug': slug})
+  })
+  .then((result) => {
+    const id = result
+    return connection('blogs')
+    .where('id', id)
+    .select()
+  })
+}
 
 // Get Blog
+function getBlogPost (blogSlug, connection) {
+  return connection('blogs')
+  .join('users', 'users.id', 'blogs.author')
+  .join('taxonomy_vocabulary', 'taxonomy_vocabulary.id', 'blogs.tags')
+  .join('profile', 'profile.id', 'users.profile_id')
+  .where('blogs.id', blogSlug)
+  .select('blogs.title', 'blogs.body', 'blogs.summary', 'blogs.published_date', 'blogs.image', 'profile.first_name', 'profile.last_name', 'profile.id as profile_id', 'taxonomy_vocabulary.title as tags', 'blogs.image')
+}
 
 // Edit Blog
 
