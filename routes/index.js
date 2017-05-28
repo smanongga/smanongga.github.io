@@ -89,7 +89,6 @@ router.post('/blog/add', upload.single('image'), function (req, res) {
 // Get blog router
 router.get('/blog/:id', function (req, res) {
   var blogSlug = req.params.id
-  console.log(blogSlug)
   db.getBlogPost(blogSlug, req.app.get('connection'))
   .then((result) => {
     const viewData = {
@@ -114,6 +113,7 @@ router.get('/blog/:id/edit', function (req, res) {
   const blogSlug = req.params.id
   db.getBlogPost(blogSlug, req.app.get('connection'))
   .then((result) => {
+    console.log(result)
     res.render('addBlog', result[0])
   })
 })
