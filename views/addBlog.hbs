@@ -1,4 +1,13 @@
 {{> header}}
+<script type="text/javascript">
+$(document).ready(function(){
+$('input.typeahead').typeahead({
+name: 'typeahead',
+remote: 'http://localhost:3000/search?key=%QUERY',
+limit: 10
+});
+});
+</script>
 <div class="container">
   <h2>Create a Blog</h2>
 <form class="" action="/blog/add" method="POST"  enctype="multipart/form-data">

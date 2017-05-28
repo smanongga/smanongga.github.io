@@ -3,7 +3,8 @@ module.exports = {
   getOldBlogs: getOldBlogs,
   addBlogPost: addBlogPost,
   getBlogPost: getBlogPost,
-  editBlogPost: editBlogPost
+  editBlogPost: editBlogPost,
+  getAuthor: getAuthor
 }
 
 // ADMIN SECTION SQL
@@ -65,14 +66,14 @@ function getBlogPost (blogSlug, connection) {
   .join('users', 'users.id', 'blogs.author')
   .join('taxonomy_vocabulary', 'taxonomy_vocabulary.id', 'blogs.tags')
   .join('profile', 'profile.id', 'users.profile_id')
-  .where('blogs.id', blogSlug)
+  .where('blogs.slug', '=', blogSlug)
   .select('blogs.title', 'blogs.body', 'blogs.summary', 'blogs.published_date', 'blogs.image', 'profile.first_name', 'profile.last_name', 'profile.id as profile_id', 'taxonomy_vocabulary.title as tags', 'blogs.image')
 }
 
 // Edit Blog
-function editBlogPost (id, connection) {
+function editBlogPost (blogSlug, connection) {
   return connection('blogs')
-  .where('id', id)
+  .where('blogs.slug', '=', blogSlug)
   .update()
   .then((result) => {
     const id = result
@@ -109,3 +110,8 @@ function editBlogPost (id, connection) {
 // Fetch Profile -> User
 
 // Fetch
+function getAuthor (author, connection) {
+  return connection('users')
+  .where('users.name', 'like', `%${author}%`)
+  .select('users.name')
+}

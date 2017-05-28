@@ -34,7 +34,7 @@ router.get('/', function (req, res) {
         last_name: results[i].last_name,
         profile_id: results[i].profile_id,
         tags: results[i].tags,
-        slugs: results[i].slugs}
+        slug: results[i].slug}
       viewData.blog.push(blogEntry)
     }
     res.render('index', viewData)
@@ -47,9 +47,22 @@ router.get('/', function (req, res) {
 // Blog section - URL - /blog
 router.get('/blog', function (req, res) {
   db.getOldBlogs(req.app.get('connection'))
-  .then(results => {
+  .then((results) => {
     const viewData = {
-      blog: results
+      blog: []
+    }
+    for (var i = 0; i < results.length; i++) {
+      const blogEntry = {
+        title: results[i].title,
+        published_date: dateFormat(results[i].published_date, 'mmmm dd yyyy'),
+        image: results[i].image,
+        summary: results[i].summary,
+        first_name: results[i].first_name,
+        last_name: results[i].last_name,
+        profile_id: results[i].profile_id,
+        tags: results[i].tags,
+        slug: results[i].slug}
+      viewData.blog.push(blogEntry)
     }
     res.render('index', viewData)
   })
@@ -79,7 +92,7 @@ router.post('/blog/add', upload.single('image'), function (req, res) {
 
   db.addBlogPost(title, slug, body, author, summary, image, status, date, tags, req.app.get('connection'))
   .then(results => {
-    res.redirect(`/blog/${results[0].id}`)
+    res.redirect(`/blog/${results[0].slug}`)
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
@@ -88,7 +101,7 @@ router.post('/blog/add', upload.single('image'), function (req, res) {
 
 // Get blog router
 router.get('/blog/:id', function (req, res) {
-  var blogSlug = Number(req.params.id)
+  var blogSlug = req.params.id
   db.getBlogPost(blogSlug, req.app.get('connection'))
   .then((result) => {
     const viewData = {
@@ -110,9 +123,10 @@ router.get('/blog/:id', function (req, res) {
 
 // Edit blog router
 router.get('/blog/:id/edit', function (req, res) {
-  const id = req.params.id
-  db.getBlogPost(id, req.app.get('connection'))
+  const blogSlug = req.params.id
+  db.getBlogPost(blogSlug, req.app.get('connection'))
   .then((result) => {
+    console.log(result)
     res.render('addBlog', result[0])
   })
 })
