@@ -5,6 +5,8 @@ module.exports = {
   getBlogPost: getBlogPost,
   editBlogPost: editBlogPost,
   addProjectPost: addProjectPost,
+  getProjectPost: getProjectPost,
+  editProjectPost: editProjectPost,
   getAuthor: getAuthor
 }
 
@@ -103,9 +105,25 @@ function addProjectPost (title, description, goals, requirements, outcome, autho
   })
 }
 // Get Project
+function getProjectPost (id, connection) {
+  return connection('projects')
+  .join('users', 'users.id', 'projects.author')
+  .select()
+  .where('id', id)
+}
 
 // Edit Project
-
+function editProjectPost (id, connection) {
+  return connection('projects')
+  .where('id', id)
+  .update()
+  .then((result) => {
+    const id = result
+    return connection('pages')
+    .where('id', id)
+    .select()
+  })
+}
 // PAGE CONTENT TYPE SQL
 
 // Add Page
