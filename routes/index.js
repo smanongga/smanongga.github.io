@@ -44,4 +44,18 @@ router.get('/', function (req, res) {
   })
 })
 
+// Blog section - URL - /blog
+router.get('/blog', function (req, res) {
+  db.getOldBlogs(req.app.get('connection'))
+  .then(results => {
+    const viewData = {
+      blog: results
+    }
+    res.render('index', viewData)
+  })
+  .catch(function (err) {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
+  })
+})
+
 module.exports = router
