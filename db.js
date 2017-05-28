@@ -65,7 +65,7 @@ function getBlogPost (blogSlug, connection) {
   .join('users', 'users.id', 'blogs.author')
   .join('taxonomy_vocabulary', 'taxonomy_vocabulary.id', 'blogs.tags')
   .join('profile', 'profile.id', 'users.profile_id')
-  .where('blogs.id', blogSlug)
+  .where('blogs.slug', '=', blogSlug)
   .select('blogs.title', 'blogs.body', 'blogs.summary', 'blogs.published_date', 'blogs.image', 'profile.first_name', 'profile.last_name', 'profile.id as profile_id', 'taxonomy_vocabulary.title as tags', 'blogs.image')
 }
 
