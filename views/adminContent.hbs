@@ -1,41 +1,52 @@
 {{> header}}
 <div class="container">
-  <h2>Admin: {{this.siteTitle}}</h2>
-  <form>
-  <label>Bulk Operation Option</label>
-  <select>
-  <option value="publish">Publish</option>
-  <option value="unpublish">Unpublish</option>
-  <option value="delete">Delete</option>
-</select>
-<input type="submit" class="btn-primary" value="Apply">
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Title</th>
-        <th>Status</th>
-        <th>Author</th>
-        <th>Published Date</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-  {{#each content}}
-   <tr>
-     <td><input type="checkbox" value="{{contentId}}"></td>
-     <td><a href=/{{type}}/{{slug}}>{{title}}</a></td>
-     <td>{{status}}</td>
-     <td>{{name}}</td>
-     <td>{{published_date}}</td>
-     <td><center>
-       <a class="btn btn-success btn-sm" href="/{{type}}/{{slug}}">View</a>
-       <a class="btn btn-primary btn-sm" href="/{{type}}/{{slug}}">Edit</a>
-       <a class="btn btn-danger btn-sm" href="/{{type}}/{{slug}}">Delete</a></center></td>
-  </tr>
-  {{/each}}
-</tbody>
-</table>
-</form>
-</div> <!-- / .container -->
-{{> footer}}
+  <div class="row">
+    <div class="col-md-2">
+      <ul>
+        <li><a href="/admin/pages/content">Pages</a></li>
+        <li><a href="/admin/blogs/content">Blogs</a></li>
+        <li><a href="/admin/projects/content">Projects</a></li>
+      </ul>
+    </ul>
+  </div>
+  <div class="col-md-10">
+    <h2>Admin: {{this.siteTitle}}</h2>
+    <form>
+      <label>Bulk Operation Option</label>
+      <select>
+        <option value="publish">Publish</option>
+        <option value="unpublish">Unpublish</option>
+        <option value="delete">Delete</option>
+      </select>
+      <input type="submit" class="btn-primary" value="Apply">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Author</th>
+            <th>Published Date</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each content}}
+          <tr>
+            <td><input type="checkbox" value="{{contentId}}"></td>
+            <td><a href=/{{type}}/{{slug}}>{{title}}</a></td>
+            <td>{{status}}</td>
+            <td>{{name}}</td>
+            <td>{{published_date}}</td>
+            <td><center>
+              <a class="btn btn-success btn-sm" href="/{{type}}/{{slug}}">View</a>
+              <a class="btn btn-primary btn-sm" href="/{{type}}/{{slug}}">Edit</a>
+              <a class="btn btn-danger btn-sm" href="/{{type}}/{{slug}}">Delete</a></center></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </form>
+    </div>
+  </div> <!-- / .container -->
+  {{> footer}}
