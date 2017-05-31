@@ -17,7 +17,7 @@
         <th>Status</th>
         <th>Author</th>
         <th>Published Date</th>
-        <th>Operation</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -28,7 +28,10 @@
      <td>{{status}}</td>
      <td>{{name}}</td>
      <td>{{published_date}}</td>
-     <td><center><a class="btn btn-primary btn-sm" href="/{{type}}/{{slug}}">Edit</a> <a class="btn btn-danger btn-sm" href="/{{type}}/{{slug}}">Delete</a></center></td>
+     <td><center>
+       <a class="btn btn-success btn-sm" href="/{{type}}/{{slug}}">View</a>
+       <a class="btn btn-primary btn-sm" href="/{{type}}/{{slug}}">Edit</a>
+       <a class="btn btn-danger btn-sm" href="/{{type}}/{{slug}}">Delete</a></center></td>
   </tr>
   {{/each}}
 </tbody>

@@ -21,8 +21,19 @@ router.get('/admin/:id/content', function (req, res) {
   db.getAdminContent(contentType, req.app.get('connection'))
   .then((results) => {
     const viewData = {
-      content: results,
+      content: [],
       siteTitle: contentType
+    }
+    for (var i = 0; i < results.length; i++) {
+      const PostEntry = {
+        title: results[i].title,
+        published_date: dateFormat(results[i].published_date, 'mmmm dd yyyy'),
+        status: results[i].status,
+        slug: results[i].slug,
+        type: results[i].type,
+        name: results[i].name
+      }
+      viewData.content.push(PostEntry)
     }
     res.render('adminContent', viewData)
   })
@@ -115,7 +126,7 @@ router.post('/blog/add', upload.single('image'), function (req, res) {
 
 // Get blog router
 router.get('/blog/:id', function (req, res) {
-  var blogSlug = Number(req.params.id)
+  var blogSlug = req.params.id
   db.getBlogPost(blogSlug, req.app.get('connection'))
   .then((result) => {
     const viewData = {
