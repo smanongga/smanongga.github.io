@@ -4,6 +4,27 @@ body {
   background:#f9f9f9;
   line-height:1.65em;
 }
+nav.frontpage {
+  margin-bottom:0px;
+}
+.hero-subheader {
+    overflow: hidden;
+    position: relative;
+}
+.hero-subheader video {
+    position: absolute;
+    top: 51%;
+    left: 51%;
+    min-width: 102%;
+    min-height: 102%;
+    width: auto;
+    height: auto;
+    -webkit-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+}
+.hero-subheader .container {
+}
 nav.navbar-default {
   background:#ffffff;
   -webkit-box-shadow:none;
@@ -257,3 +278,85 @@ form {
 
 .tt-suggestion p {
     margin: 0;
+}
+
+h2.title {
+  margin-top: 0px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+h1.lead {
+  font-size: 80px;
+line-height: 1.3125;
+font-weight:bold;
+}
+span.red {
+  background:#FF0000;
+  padding-right:10px;
+  padding-left:10px;
+}
+.message {
+  color:#ffffff;
+  position: relative;
+      z-index: 1;
+    padding: 130px 0 100px 0;
+}
+.blog-frontpage {
+  padding: 450px 0 85px 0;
+}
+.blog-frontpage h2.title {
+  font-weight:bold;
+}
+.blog-frontpage .blog-post .blog-post-title {
+  font-size:30px;
+}
+.admin-menu h2 {
+  font-size:20px;
+  margin-top: 10px;
+}
+.admin-menu ul {
+    padding-left: 10px;
+    list-style-type: none;
+}
+.admin-menu ul li ul {
+    list-style-type: disc;
+    padding-left:30px;
+}
+.admin-menu ul li {
+  font-weight:normal;
+}
+.admin-menu ul li.menu-title {
+  font-weight:bold;
+}
+ul.add-content {
+  text-align:right;
+  font-size:16px;
+  margin-top:10px;
+}
+
+ul.add-content li {
+  display:inline-block;
+  margin-left:10px;
+  margin-right:10px;
+}
+.bulk {
+  margin-top:30px;
+}
+.admin-menu {
+  background:#ffffff;
+  padding:10px;
+}
+.heart {
+  color:#ff0000;
+}
+.flex-box {
+  display: flex;
+  flex-direction: row;
+  width:100%;
+    flex-wrap: wrap;
+}
+.flex-box .blog-post {
+  width:48%;
+  margin:10px;
+}

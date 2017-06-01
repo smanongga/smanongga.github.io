@@ -2,23 +2,38 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2">
-      <ul>
-        <li><a href="/admin/pages/content">Pages</a></li>
-        <li><a href="/admin/blogs/content">Blogs</a></li>
-        <li><a href="/admin/projects/content">Projects</a></li>
-      </ul>
-    </ul>
+    {{> adminMenu}}
   </div>
   <div class="col-md-10">
-    <h2>Admin: {{this.siteTitle}}</h2>
+    <div class="row">
+    <div class="col-md-6">
+    <h2 class="title">Manage Content: {{this.siteTitle}}</h2>
+  </div>
+  <div class="col-md-6">
+    <ul class="add-content">
+      <li><b>Add Content:</b></li>
+      <li><a href="/blog/add">+ Blog</a></li>
+      <li><a href="/page/add">+ Page</a></li>
+      <li><a href="/project/add">+ Project</a></li>
+    </ul>
+  </div>
+  </div>
     <form>
-      <label>Bulk Operation Option</label>
-      <select>
-        <option value="publish">Publish</option>
-        <option value="unpublish">Unpublish</option>
-        <option value="delete">Delete</option>
-      </select>
-      <input type="submit" class="btn-primary" value="Apply">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-4">
+            <label>Bulk Operation Options</label>
+            <select class="form-control">
+              <option value="publish">Publish</option>
+              <option value="unpublish">Unpublish</option>
+              <option value="delete">Delete</option>
+            </select>
+          </div>
+          <div class="col-md-8">
+            <input type="submit" class="btn btn-info btn-sm bulk" value="Apply">
+          </div>
+        </div>
+      </div>
       <table class="table table-striped table-bordered">
         <thead>
           <tr>
@@ -37,16 +52,17 @@
             <td><a href=/{{type}}/{{slug}}>{{title}}</a></td>
             <td>{{status}}</td>
             <td>{{name}}</td>
-            <td>{{published_date}}</td>
+            <td>{{viewFormat published_date}}</td>
             <td><center>
               <a class="btn btn-success btn-sm" href="/{{type}}/{{slug}}">View</a>
-              <a class="btn btn-primary btn-sm" href="/{{type}}/{{slug}}">Edit</a>
-              <a class="btn btn-danger btn-sm" href="/{{type}}/{{slug}}">Delete</a></center></td>
+              <a class="btn btn-primary btn-sm" href="/{{type}}/{{slug}}/edit">Edit</a>
+              <a class="btn btn-danger btn-sm" href="/{{type}}/{{slug}}/delete">Delete</a></center></td>
             </tr>
             {{/each}}
           </tbody>
         </table>
       </form>
     </div>
-  </div> <!-- / .container -->
-  {{> footer}}
+  </div>
+</div> <!-- / .container -->
+{{> footer}}

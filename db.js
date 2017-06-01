@@ -4,7 +4,7 @@ module.exports = {
   getProjects: getProjects,
   getBlogPost: getBlogPost,
   addBlogPost: addBlogPost,
-  editBlogPost: editBlogPost,
+  deleteBlogPost: deleteBlogPost,
   getOldBlogs: getOldBlogs,
   addProjectPost: addProjectPost,
   getProjectPost: getProjectPost,
@@ -40,7 +40,8 @@ function getRecentBlogs (connection) {
   .join('taxonomy_vocabulary', 'taxonomy_vocabulary.id', 'blogs.tags')
   .join('profile', 'profile.id', 'users.profile_id')
   .select('blogs.title', 'blogs.slug', 'blogs.summary', 'blogs.published_date', 'blogs.image', 'profile.first_name', 'profile.last_name', 'profile.id as profile_id', 'taxonomy_vocabulary.title as tags')
-  .orderByRaw('blogs.id DESC').limit(5)
+  .orderByRaw('blogs.id DESC').limit(4)
+  .where('blogs.status', 'Published')
 }
 
 // Get old blog post - URL - /blog
@@ -50,7 +51,8 @@ function getOldBlogs (connection) {
   .join('taxonomy_vocabulary', 'taxonomy_vocabulary.id', 'blogs.tags')
   .join('profile', 'profile.id', 'users.profile_id')
   .select('blogs.title', 'blogs.slug', 'blogs.summary', 'blogs.published_date', 'blogs.image', 'profile.first_name', 'profile.last_name', 'profile.id as profile_id', 'taxonomy_vocabulary.title as tags')
-  .orderByRaw('blogs.id DESC').offset(5)
+  .orderByRaw('blogs.id DESC').offset(4)
+  .where('blogs.status', 'Published')
 }
 
 // Get list of project - URL - /projects
@@ -87,20 +89,14 @@ function getBlogPost (blogSlug, connection) {
   .join('taxonomy_vocabulary', 'taxonomy_vocabulary.id', 'blogs.tags')
   .join('profile', 'profile.id', 'users.profile_id')
   .where('blogs.slug', blogSlug)
-  .select('blogs.title', 'blogs.body', 'blogs.summary', 'blogs.published_date', 'blogs.image', 'profile.first_name', 'profile.last_name', 'profile.id as profile_id', 'taxonomy_vocabulary.title as tags', 'blogs.image')
+  .select('blogs.title', 'blogs.body', 'blogs.summary', 'blogs.published_date', 'blogs.image', 'blogs.status', 'profile.first_name', 'profile.last_name', 'profile.id as profile_id', 'taxonomy_vocabulary.title as tags', 'blogs.image', 'users.name as author')
 }
 
-// Edit Blog
-function editBlogPost (id, connection) {
+// Delete Blog
+function deleteBlogPost (blogSlug, connection) {
   return connection('blogs')
-  .where('id', id)
-  .update()
-  .then((result) => {
-    const id = result
-    return connection('pages')
-    .where('id', id)
-    .select()
-  })
+  .where('blogs.slug', blogSlug)
+  .delete()
 }
 
 // PROJECTS CONTENT TYPE SQL
@@ -123,11 +119,11 @@ function addProjectPost (title, description, goals, requirements, outcome, autho
 }
 
 // Get Project
-function getProjectPost (id, connection) {
+function getProjectPost (projectSlug, connection) {
   return connection('projects')
   .join('users', 'users.id', 'projects.author')
   .select()
-  .where('id', id)
+  .where('projects.slug', projectSlug)
 }
 
 // Edit Project
@@ -163,12 +159,12 @@ function addPagePost (title, body, author, date, status, connection) {
 }
 
 // Get Page
-function getPagePost (id, connection) {
+function getPagePost (pageSlug, connection) {
   return connection('pages')
   .join('users', 'users.id', 'pages.author')
   .join('profile', 'profile.id', 'users.profile_id')
-  .where('pages.id', id)
-  .select('pages.title', 'pages.body', 'pages.published_date', 'pages.status', 'profile.first_name', 'profile.last_name', 'profile.id as profile_id')
+  .where('pages.slug', pageSlug)
+  .select('pages.title', 'pages.body', 'pages.published_date', 'pages.status', 'profile.first_name', 'profile.last_name', 'profile.id as profile_id', 'pages.slug')
 }
 
 // Edit Page

@@ -1,7 +1,8 @@
 var express = require('express')
+var dateFormat = require('dateformat')
 var router = express.Router()
 var multer = require('multer')
-var dateFormat = require('dateformat')
+
 var db = require('../db')
 
 var storage = multer.diskStorage({
@@ -21,19 +22,8 @@ router.get('/admin/:id/content', function (req, res) {
   db.getAdminContent(contentType, req.app.get('connection'))
   .then((results) => {
     const viewData = {
-      content: [],
+      content: results,
       siteTitle: contentType
-    }
-    for (var i = 0; i < results.length; i++) {
-      const PostEntry = {
-        title: results[i].title,
-        published_date: dateFormat(results[i].published_date, 'mmmm dd yyyy'),
-        status: results[i].status,
-        slug: results[i].slug,
-        type: results[i].type,
-        name: results[i].name
-      }
-      viewData.content.push(PostEntry)
     }
     res.render('adminContent', viewData)
   })
@@ -46,20 +36,8 @@ router.get('/', function (req, res) {
   db.getRecentBlogs(req.app.get('connection'))
   .then((results) => {
     const viewData = {
-      blog: []
-    }
-    for (var i = 0; i < results.length; i++) {
-      const blogEntry = {
-        title: results[i].title,
-        published_date: dateFormat(results[i].published_date, 'mmmm dd yyyy'),
-        image: results[i].image,
-        summary: results[i].summary,
-        first_name: results[i].first_name,
-        last_name: results[i].last_name,
-        profile_id: results[i].profile_id,
-        tags: results[i].tags,
-        slugs: results[i].slugs}
-      viewData.blog.push(blogEntry)
+      siteTitle: 'S.Manongga',
+      blog: results
     }
     res.render('index', viewData)
   })
@@ -73,9 +51,10 @@ router.get('/blog', function (req, res) {
   db.getOldBlogs(req.app.get('connection'))
   .then(results => {
     const viewData = {
+      siteTitle: 'S.Manongga',
       blog: results
     }
-    res.render('index', viewData)
+    res.render('blogList', viewData)
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
@@ -87,9 +66,10 @@ router.get('/projects', function (req, res) {
   db.getProjects(req.app.get('connection'))
   .then(results => {
     const viewData = {
+      siteTitle: 'S.Manongga',
       project: results
     }
-    res.render('projectPost', viewData)
+    res.render('projectList', viewData)
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
@@ -105,7 +85,7 @@ router.get('/blog/add', function (req, res) {
 
 router.post('/blog/add', upload.single('image'), function (req, res) {
   const title = req.body.title
-  const slug = req.body.title.replace(/ /g, '-').toLowerCase()
+  const slug = req.body.title.replace(/[^\w,'-]/g, '-').toLowerCase()
   const body = req.body.body
   const author = req.body.typeahead
   const summary = req.body.summary
@@ -117,7 +97,7 @@ router.post('/blog/add', upload.single('image'), function (req, res) {
 
   db.addBlogPost(title, slug, body, author, summary, image, status, date, tags, req.app.get('connection'))
   .then(results => {
-    res.redirect(`/blog/${results[0].id}`)
+    res.redirect(`/blog/${results[0].slug}`)
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
@@ -129,17 +109,7 @@ router.get('/blog/:id', function (req, res) {
   var blogSlug = req.params.id
   db.getBlogPost(blogSlug, req.app.get('connection'))
   .then((result) => {
-    const viewData = {
-      title: result[0].title,
-      body: result[0].body,
-      date: dateFormat(result[0].published_date, 'mmmm dd yyyy'),
-      image: result[0].image,
-      first_name: result[0].first_name,
-      last_name: result[0].last_name,
-      profile_id: result[0].profile_id,
-      tags: result[0].tags
-    }
-    res.render('blogPost', viewData)
+    res.render('blogPost', result[0])
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
@@ -155,13 +125,17 @@ router.get('/blog/:id/edit', function (req, res) {
   })
 })
 
-// router.post('/blog/add', (req, res) => {
-//   const id = req.params.id
-//   db.addBlogPost(id, req.app.get('connection'))
-//    .then((result) => {
-//      res.render('blogPost', result[0])
-//    })
-// })
+// Delete blog router
+router.get('/blog/:id/delete', function (req, res) {
+  const blogSlug = req.params.id
+  db.deleteBlogPost(blogSlug, req.app.get('connection'))
+  .then((result) => {
+    res.redirect('/')
+  })
+  .catch(function (err) {
+    res.status(500).send('DATABASE ERROR: ' + err.message)
+  })
+})
 
 //  PAGE ROUTERS
 
@@ -186,9 +160,10 @@ router.post('page/submit', function (req, res) {
 
 // Get page router
 router.get('/page/:id', function (req, res) {
-  const id = req.params.id
-  db.getPagePost(id, req.app.get('connection'))
+  const pageSlug = req.params.id
+  db.getPagePost(pageSlug, req.app.get('connection'))
   .then((result) => {
+    console.log
     res.render('pagePost', result[0])
   })
   .catch(function (err) {
@@ -199,7 +174,7 @@ router.get('/page/:id', function (req, res) {
 //  PROJECT ROUTERS
 
 // Add project router
-router.get('/projects/add', function (req, res) {
+router.get('/project/add', function (req, res) {
   res.render('addProject')
 })
 
@@ -224,12 +199,12 @@ router.post('/project/add', function (req, res) {
 })
 
 // Get project router
-router.get('/projects/:id', function (req, res) {
-  const id = req.params.id
+router.get('/project/:id', function (req, res) {
+  const projectSlug = req.params.id
 
-  db.getProjectPost(id, req.app.get('connection'))
+  db.getProjectPost(projectSlug, req.app.get('connection'))
   .then((result) => {
-    res.render('pagePost', result[0])
+    res.render('projectPost', result[0])
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
@@ -242,7 +217,7 @@ router.get('/search', function (req, res) {
   db.getAuthor(author, req.app.get('connection'))
   .then(function (results) {
     var data = []
-    for(prop in results) {
+    for (prop in results) {
       data.push(results[prop].name)
     }
     res.end(JSON.stringify(data))

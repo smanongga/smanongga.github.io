@@ -6,13 +6,16 @@
         <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
         By <a href="/users/{{profile_id}}">{{first_name}} {{last_name}}</a></div>
         <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
-       {{date}}
+       {{viewFormat published_date}}
       </div>
 
 
         <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> {{tags}}
         </div>
+        {{#if image}}
         <img src="{{image}}" alt="{{title}}">
+        {{else}}
+        {{/if}}
         <div class="blog-post-entry">
         <p>{{{body}}}</p>
         </div>
