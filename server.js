@@ -2,6 +2,7 @@ const path = require('path')
 const dateFormat = require('dateformat')
 const express = require('express')
 const bodyParser = require('body-parser')
+const expressValidator = require('express-validator')
 const hbs = require('express-handlebars')
 
 const index = require('./routes/index')
@@ -28,6 +29,7 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(expressValidator())
 
 // Routes
 

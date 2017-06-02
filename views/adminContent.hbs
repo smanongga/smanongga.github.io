@@ -18,7 +18,7 @@
     </ul>
   </div>
   </div>
-    <form>
+    <form action="/blog/add" method="POST">
       <div class="form-group">
         <div class="row">
           <div class="col-md-4">
@@ -48,7 +48,7 @@
         <tbody>
           {{#each content}}
           <tr>
-            <td><input type="checkbox" value="{{contentId}}"></td>
+            <td><input name="contentId" type="checkbox" value="{{contentId}}"></td>
             <td><a href=/{{type}}/{{slug}}>{{title}}</a></td>
             <td>{{status}}</td>
             <td>{{name}}</td>

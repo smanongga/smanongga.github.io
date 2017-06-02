@@ -12,7 +12,8 @@ module.exports = {
   addPagePost: addPagePost,
   getPagePost: getPagePost,
   editPagePost: editPagePost,
-  getAuthor: getAuthor
+  getAuthor: getAuthor,
+  bulkOperation: bulkOperation
 }
 
 // ADMIN SECTION SQL
@@ -21,7 +22,7 @@ module.exports = {
 function getAdminContent (contentType, connection) {
   return connection(contentType)
   .join('users', 'users.id', `${contentType}.author`)
-  .select('title', 'status', 'type', 'published_date', 'users.name as name', 'slug')
+  .select(`${contentType}.id as contentId`, 'title', 'status', 'type', 'published_date', 'users.name as name', 'slug')
   .orderByRaw(`${contentType}.id DESC`)
 }
 
@@ -195,4 +196,20 @@ function getAuthor (author, connection) {
   return connection('users')
   .where('users.name', 'like', `%${author}%`)
   .select('users.name')
+}
+
+// Bulk Operation
+function bulkOperation (option, value, contentType, connection) {
+  switch (option) {
+    case 'Published' || 'Unpublished':
+      return connection(contentType)
+      .where(`${contentType}.status`.value)
+      .update(`${contentType}.status`, option)
+    case 'Delete':
+      return connection(contentType)
+      .where(`${contentType}.status`.value)
+      .delete()
+    default:
+      break
+  }
 }

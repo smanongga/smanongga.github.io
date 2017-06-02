@@ -29,6 +29,16 @@ router.get('/admin/:id/content', function (req, res) {
   })
 })
 
+router.post('/admin/:id/content', function (req, res) {
+  const contentType = req.params.id
+  const contentId = req.body.contentId
+  console.log(contentId)
+  db.bulkOperation(contentType, contentId, req.app.get('connection'))
+  .then((results) => {
+    res.redirect('/admin/results[0].type/' + 'content')
+  })
+})
+
 // SITE STRUCTURE
 
 // Frontpage - URL - /
