@@ -1,7 +1,5 @@
-// BLOG ROUTER
-var express = require('express')
+// BLOG Controller
 var dateFormat = require('dateformat')
-var router = express.Router()
 var multer = require('multer')
 var db = require('../db')
 
@@ -15,12 +13,9 @@ var storage = multer.diskStorage({
 })
 var upload = multer({storage: storage})
 
-// Add blog router
-router.get('/add', function (req, res) {
-  res.render('addBlog')
-})
+exports.add = function (req, res) {
+  upload.single('image')
 
-router.post('/add', upload.single('image'), function (req, res) {
   const title = req.body.title
   const slug = req.body.title.replace(/[^\w,'-]/g, '-').toLowerCase()
   const body = req.body.body
@@ -39,10 +34,9 @@ router.post('/add', upload.single('image'), function (req, res) {
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
-})
+}
 
-// Get blog router
-router.get('/:id', function (req, res) {
+exports.blog_detail = function (req, res) {
   var blogSlug = req.params.id
   db.getBlogPost(blogSlug, req.app.get('connection'))
   .then((result) => {
@@ -51,15 +45,12 @@ router.get('/:id', function (req, res) {
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
-})
+}
 
-// Edit blog router
-router.get('/:id/edit', function (req, res) {
+exports.blog_edit = function (req, res) {
   const id = req.params.id
   db.getBlogPost(id, req.app.get('connection'))
   .then((result) => {
     res.render('addBlog', result[0])
   })
-})
-
-module.exports = router
+}

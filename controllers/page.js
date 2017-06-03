@@ -1,15 +1,8 @@
-//  PAGE ROUTERS
-var express = require('express')
+//  PAGE Controller
 var dateFormat = require('dateformat')
-var router = express.Router()
 var db = require('../db')
 
-// Add page router
-router.get('/add', function (req, res) {
-  res.render('addPage')
-})
-
-router.post('/submit', function (req, res) {
+exports.add = function (req, res) {
   const title = req.body.title
   const body = req.body.body
   const author = req.body.typeahead
@@ -21,10 +14,9 @@ router.post('/submit', function (req, res) {
   .then(results => {
     res.redirect(`/${results[0].id}`)
   })
-})
+}
 
-// Get page router
-router.get('/:id', function (req, res) {
+exports.project_detail = function (req, res) {
   const pageSlug = req.params.id
   db.getPagePost(pageSlug, req.app.get('connection'))
   .then((result) => {
@@ -34,6 +26,4 @@ router.get('/:id', function (req, res) {
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
-})
-
-module.exports = router
+}

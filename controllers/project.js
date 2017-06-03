@@ -1,15 +1,8 @@
-//  PROJECT ROUTERS
-var express = require('express')
+//  PROJECT Controller
 var dateFormat = require('dateformat')
-var router = express.Router()
 var db = require('../db')
 
-// Add project router
-router.get('/add', function (req, res) {
-  res.render('addProject')
-})
-
-router.post('/add', function (req, res) {
+exports.add = function (req, res) {
   const title = req.params.title
   const description = req.params.title
   const goals = req.params.goals
@@ -27,10 +20,9 @@ router.post('/add', function (req, res) {
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
-})
+}
 
-// Get project router
-router.get('/:id', function (req, res) {
+exports.project_detail = function (req, res) {
   const projectSlug = req.params.id
 
   db.getProjectPost(projectSlug, req.app.get('connection'))
@@ -40,4 +32,4 @@ router.get('/:id', function (req, res) {
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
-})
+}

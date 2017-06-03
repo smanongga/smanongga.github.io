@@ -1,70 +1,65 @@
 var express = require('express')
-var dateFormat = require('dateformat')
 var router = express.Router()
 
-var db = require('../db')
+// Require controller modules
+var indexController = require('../controllers/index')
+var adminController = require('../controllers/admin')
+var blogController = require('../controllers/blog')
+var projectController = require('../controllers/project')
+var pageController = require('../controllers/page')
 
-// SITE STRUCTURE
+// SITE SECTION
 
 // Frontpage - URL - /
-router.get('/', function (req, res) {
-  db.getRecentBlogs(req.app.get('connection'))
-  .then((results) => {
-    const viewData = {
-      siteTitle: 'S.Manongga',
-      blog: results
-    }
-    res.render('index', viewData)
-  })
-  .catch(function (err) {
-    res.status(500).send('DATABASE ERROR: ' + err.message)
-  })
-})
+router.get('/', indexController.index)
+// Blog - URL - /blog
+router.get('/blog', indexController.blog)
+// Project - URL - /project
+router.get('/project', indexController.project)
+// Search - URL - /search
+router.get('/search', indexController.search)
 
-// Blog section - URL - /blog
-router.get('/blog', function (req, res) {
-  db.getOldBlogs(req.app.get('connection'))
-  .then(results => {
-    const viewData = {
-      siteTitle: 'S.Manongga',
-      blog: results
-    }
-    res.render('blogList', viewData)
-  })
-  .catch(function (err) {
-    res.status(500).send('DATABASE ERROR: ' + err.message)
-  })
-})
+// ADMIN SECTION
+router.get('/:id/content', adminController.index)
+router.post('/:id/content', adminController.update)
 
-// Projects section - URL - /projects
-router.get('/project', function (req, res) {
-  db.getProjects(req.app.get('connection'))
-  .then(results => {
-    const viewData = {
-      siteTitle: 'S.Manongga',
-      project: results
-    }
-    res.render('projectList', viewData)
-  })
-  .catch(function (err) {
-    res.status(500).send('DATABASE ERROR: ' + err.message)
-  })
-})
+// BLOG ROUTER - CRUD
 
-//  HELPER ROUTER
-router.get('/search', function (req, res) {
-  var author = req.query.key
-  db.getAuthor(author, req.app.get('connection'))
-  .then(function (results) {
-    var data = []
-    for (var prop in results) {
-      data.push(results[prop].name)
-    }
-    res.end(JSON.stringify(data))
-  })
-  .catch(function (err) {
-    res.status(500).send('DATABASE ERROR: ' + err.message)
-  })
+// Add blog router - GET
+router.get('/add', function (req, res) {
+  res.render('addBlog')
 })
+// Add blog router - POST
+router.post('/add', blogController.add)
+// View blog router - GET
+router.get('/:id', blogController.blog_detail)
+// Edit blog router - POST
+router.get('/:id/edit', blogController.blog_edit)
+
+// PROJECT ROUTER - CRUD
+
+// Add project router - GET
+router.get('/add', function (req, res) {
+  res.render('addBlog')
+})
+// Add project router - POST
+router.post('/add', projectController.add)
+// View project router - GET
+router.get('/:id', projectController.project_detail)
+// Edit project router - POST
+router.get('/:id/edit', projectController.project_edit)
+
+// PAGE ROUTER - CRUD
+
+// Add page router - GET
+router.get('/add', function (req, res) {
+  res.render('addBlog')
+})
+// Add page router - POST
+router.post('/add', pageController.add)
+// View page router - GET
+router.get('/:id', pageController.page_detail)
+// Edit page router - POST
+router.get('/:id/edit', pageController.page_edit)
 
 module.exports = router
