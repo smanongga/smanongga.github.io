@@ -6,6 +6,10 @@ const expressValidator = require('express-validator')
 const hbs = require('express-handlebars')
 
 const index = require('./routes/index')
+const blog = require('./routes/blog')
+const page = require('./routes/page')
+const admin = require('./routes/admin')
+const project = require('./routes/project')
 
 const app = express()
 
@@ -34,6 +38,10 @@ app.use(expressValidator())
 // Routes
 
 app.use('/', index)
+app.use('/blog/', blog)
+app.use('/page/', page)
+app.use('/project/', project)
+app.use('/admin/', admin)
 
 module.exports = (connection) => {
   app.set('connection', connection)
