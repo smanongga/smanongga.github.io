@@ -287,9 +287,19 @@ h2.title {
   text-transform: capitalize;
 }
 h1.lead {
-  font-size: 80px;
+  font-size: 72px;
 line-height: 1.3125;
 font-weight:bold;
+}
+h2.follow {
+  font-size:34px;
+  font-weight:bold;
+  margin-bottom:60px;
+  line-height:1.65em;
+}
+p.intro {
+  font-size:24px;
+  font-weight:bold;
 }
 span.red {
   background:#FF0000;
@@ -300,7 +310,7 @@ span.red {
   color:#ffffff;
   position: relative;
       z-index: 1;
-    padding: 130px 0 100px 0;
+    padding: 100px 0 100px 0;
 }
 .blog-frontpage {
   padding: 450px 0 85px 0;

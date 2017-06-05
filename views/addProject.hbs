@@ -14,8 +14,17 @@ $(document).ready(function(){
       {{> adminMenu}}
   </div>
   <div class="col-md-10">
-    <h2>Create a Project</h2>
-    <form class="" action="/page/submit" method="post">
+    <h2>{{title}}</h2>
+    {{#if errors}}
+    <div class="alert alert-danger">
+      <ul>
+    {{#each errors}}
+        <li>{{msg}}</li>
+    {{/each}}
+   </ul>
+    </div>
+{{/if}}
+    <form class="" action="/project/add" method="POST">
       <div class="form-group">
         <label>Title</label>
         <input type="text" name="title" value="" class="form-control">

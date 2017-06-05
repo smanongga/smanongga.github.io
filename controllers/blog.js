@@ -13,27 +13,53 @@ var storage = multer.diskStorage({
 })
 var upload = multer({storage: storage})
 
+function slugify (text) {
+  return text.toString().toLowerCase()
+    .replace(/\s+/g, '-')        // Replace spaces with -
+    .replace(/[^\w\-]+/g, '')    // Remove all non-word chars
+    .replace(/\-\-+/g, '-')      // Replace multiple - with single -
+    .replace(/^-+/, '')          // Trim - from start of text
+    .replace(/-+$/, '')          // Trim - from end of text
+}
+exports.image = upload.single('image')
+
 exports.add = function (req, res) {
-  upload.single('image')
+  const blog = {
+    title: req.body.title,
+    slug: slugify(req.body.title),
+    body: req.body.body,
+    author: req.body.typeahead,
+    summary: req.body.summary,
+    tags: req.body.tags,
+    status: req.body.status,
+    date: dateFormat(req.body.publishedDate, 'yyyy-mm-dd 08:00:00'),
+    image: req.file.path
+  }
 
-  const title = req.body.title
-  const slug = req.body.title.replace(/[^\w,'-]/g, '-').toLowerCase()
-  const body = req.body.body
-  const author = req.body.typeahead
-  const summary = req.body.summary
-  const status = req.body.status
-  const tags = req.body.tags
-  const today = new Date()
-  const date = dateFormat(today, 'yyyy-mm-dd 08:00:00')
-  const image = req.file.path.replace('public', '')
+  // Form validation
+  req.checkBody('title', 'Title is required').notEmpty()
+  req.checkBody('author', 'Author is required').notEmpty()
+  req.checkBody('publishedDate', 'Published date is required').notEmpty()
+  req.checkBody('status', 'Status is required').notEmpty()
 
-  db.addBlogPost(title, slug, body, author, summary, image, status, date, tags, req.app.get('connection'))
+   // Data sanitization
+  req.sanitize('body').escape()
+
+  const errors = req.validationErrors()
+
+  if (errors) {
+  // Show error to user
+    res.render('addBlog', {title: 'Create Blog', blog: blog, errors: errors})
+    return
+  } else {
+    db.addBlogPost(blog, req.app.get('connection'))
   .then(results => {
-    res.redirect(`/${results[0].slug}`)
+    res.redirect(`/blog/${results[0].slug}`)
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
+  }
 }
 
 exports.blog_detail = function (req, res) {

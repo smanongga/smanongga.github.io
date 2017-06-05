@@ -20,46 +20,62 @@ router.get('/project', indexController.project)
 router.get('/search', indexController.search)
 
 // ADMIN SECTION
-router.get('/:id/content', adminController.index)
-router.post('/:id/content', adminController.update)
+
+// Manage Content
+router.get('/admin/:id/content', adminController.index)
+router.post('/admin/:id/content', adminController.bulk)
+
+// Manage Taxonomy
+router.get('/admin/taxonomy', adminController.taxonomy)
+
+// Manage Menu
 
 // BLOG ROUTER - CRUD
 
 // Add blog router - GET
-router.get('/add', function (req, res) {
-  res.render('addBlog')
+router.get('/blog/add', function (req, res) {
+  res.render('addBlog', {title: 'Create Blog'})
 })
 // Add blog router - POST
-router.post('/add', blogController.add)
+router.post('/blog/add', blogController.image, blogController.add)
 // View blog router - GET
-router.get('/:id', blogController.blog_detail)
-// Edit blog router - POST
-router.get('/:id/edit', blogController.blog_edit)
+router.get('/blog/:id', blogController.blog_detail)
+// Edit blog router - GET
+router.get('/blog/:id/edit', blogController.blog_edit)
 
 // PROJECT ROUTER - CRUD
 
 // Add project router - GET
-router.get('/add', function (req, res) {
-  res.render('addBlog')
+router.get('/project/add', function (req, res) {
+  res.render('addProject', {title: 'Create Project'})
 })
 // Add project router - POST
-router.post('/add', projectController.add)
+router.post('/project/add', projectController.add)
 // View project router - GET
-router.get('/:id', projectController.project_detail)
-// Edit project router - POST
-router.get('/:id/edit', projectController.project_edit)
+router.get('/project/:id', projectController.project_detail)
+// Edit project router - GET
+router.get('/project/:id/edit', projectController.project_edit)
 
 // PAGE ROUTER - CRUD
 
 // Add page router - GET
-router.get('/add', function (req, res) {
-  res.render('addBlog')
+router.get('/page/add', function (req, res) {
+  res.render('addPage', {title: 'Create Page'})
 })
 // Add page router - POST
-router.post('/add', pageController.add)
+router.post('/page/add', pageController.add)
 // View page router - GET
-router.get('/:id', pageController.page_detail)
-// Edit page router - POST
-router.get('/:id/edit', pageController.page_edit)
+router.get('/page/:id', pageController.page_detail)
+// Edit page router - GET
+router.get('/page/:id/edit', pageController.page_edit)
+
+// PROFILE ROUTER - CRUD
+
+// Add profile router - POST
+
+
+// View profile router - GET
+
+// Edit profile router - GET
 
 module.exports = router

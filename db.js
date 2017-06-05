@@ -12,8 +12,10 @@ module.exports = {
   addPagePost: addPagePost,
   getPagePost: getPagePost,
   editPagePost: editPagePost,
+  getTaxonomy: getTaxonomy,
   getAuthor: getAuthor,
-  bulkOperation: bulkOperation
+  updateOperation: updateOperation,
+  deleteOperation: deleteOperation
 }
 
 // ADMIN SECTION SQL
@@ -103,13 +105,21 @@ function deleteBlogPost (blogSlug, connection) {
 // PROJECTS CONTENT TYPE SQL
 
 // Add Project
-function addProjectPost (title, description, goals, requirements, outcome, author, status, date, connection) {
+function addProjectPost (project, connection) {
   return connection('users')
-  .where('name', '=', author)
+  .where('name', '=', project.author)
   .then((result) => {
     const authorId = result[0].id
     return connection('projects')
-    .insert({ 'title': title, 'description': description, 'goals': goals, 'requirements': requirements, 'outcome': outcome, 'status': status, 'published_date': '2017-04-12 08:00:00', 'type': 'projects', 'author': authorId })
+    .insert({ 'title': project.title,
+      'description': project.description,
+      'goals': project.goals,
+      'requirements': project.requirements,
+      'outcome': project.outcome,
+      'status': project.status,
+      'published_date': project.date,
+      'type': 'projects',
+      'author': authorId })
     .then((result) => {
       const id = result
       return connection('projects')
@@ -134,7 +144,7 @@ function editProjectPost (id, connection) {
   .update()
   .then((result) => {
     const id = result
-    return connection('pages')
+    return connection('projects')
     .where('id', id)
     .select()
   })
@@ -182,6 +192,10 @@ function editPagePost (id, connection) {
 }
 
 // TAXONOMY SQL
+function getTaxonomy (connection) {
+  return connection('taxonomy_vocabulary')
+  .select()
+}
 
 // PROFILE SQL
 
@@ -199,17 +213,25 @@ function getAuthor (author, connection) {
 }
 
 // Bulk Operation
-function bulkOperation (option, value, contentType, connection) {
-  switch (option) {
-    case 'Published' || 'Unpublished':
-      return connection(contentType)
-      .where(`${contentType}.status`.value)
-      .update(`${contentType}.status`, option)
-    case 'Delete':
-      return connection(contentType)
-      .where(`${contentType}.status`.value)
-      .delete()
-    default:
-      break
-  }
+function updateOperation (id, actionType, contentType, connection) {
+  console.log('DB here... updating..', id, actionType, contentType)
+  return connection(contentType)
+  .where(`${contentType}.id`, '=', id)
+  .update(`${contentType}.status`, actionType)
+  .then((result) => {
+    console.log('DB here again...', result)
+    return connection(contentType)
+    .select()
+  })
+}
+
+function deleteOperation (id, contentType, connection) {
+  console.log('DB here... deleting..', id, contentType)
+  return connection(contentType)
+  .where(`${contentType}.id`, '=', id)
+  .delete()
+  .then((result) => {
+    return connection(contentType)
+    .select()
+  })
 }
