@@ -1,7 +1,7 @@
 // BLOG Controller
 var dateFormat = require('dateformat')
 var multer = require('multer')
-var db = require('../db')
+var db = require('../db/blog')
 
 var storage = multer.diskStorage({
   destination: function (request, file, callback) {
@@ -23,7 +23,7 @@ function slugify (text) {
 }
 exports.image = upload.single('image')
 
-exports.add = function (req, res) {
+exports.add = (req, res) => {
   const blog = {
     title: req.body.title,
     slug: slugify(req.body.title),
@@ -62,18 +62,18 @@ exports.add = function (req, res) {
   }
 }
 
-exports.blog_detail = function (req, res) {
+exports.blog_detail = (req, res) => {
   var blogSlug = req.params.id
   db.getBlogPost(blogSlug, req.app.get('connection'))
   .then((result) => {
-    res.render('blogPost', result[0])
+    res.render('viewBlog', result[0])
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
 }
 
-exports.blog_edit = function (req, res) {
+exports.blog_edit = (req, res) => {
   const id = req.params.id
   db.getBlogPost(id, req.app.get('connection'))
   .then((result) => {

@@ -1,6 +1,6 @@
 //  PAGE Controller
 var dateFormat = require('dateformat')
-var db = require('../db')
+var db = require('../db/page')
 
 function slugify (text) {
   return text.toString().toLowerCase()
@@ -11,7 +11,7 @@ function slugify (text) {
     .replace(/-+$/, '')          // Trim - from end of text
 }
 
-exports.add = function (req, res) {
+exports.add = (req, res) => {
   const page = {
     title: req.body.title,
     slug: slugify(req.body.title),
@@ -46,22 +46,22 @@ exports.add = function (req, res) {
   }
 }
 
-exports.page_detail = function (req, res) {
+exports.page_detail = (req, res) => {
   const pageSlug = req.params.id
   db.getPagePost(pageSlug, req.app.get('connection'))
   .then((result) => {
-    res.render('pagePost', result[0])
+    res.render('viewPage', result[0])
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
 }
 
-exports.page_edit = function (req, res) {
+exports.page_edit = (req, res) => {
   const id = req.params.id
   db.getPagePost(id, req.app.get('connection'))
   .then((result) => {
-    res.render('addBlog', result[0])
+    res.render('addPage', result[0])
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)

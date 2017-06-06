@@ -7,6 +7,17 @@ var adminController = require('../controllers/admin')
 var blogController = require('../controllers/blog')
 var projectController = require('../controllers/project')
 var pageController = require('../controllers/page')
+var authController = require('../controllers/auth')
+var authHelpers = require('../controllers/auth/helpers')
+
+// SITE AUTHENTICATION
+
+// Register - URL - /register
+router.post('/register', authHelpers.loginRedirect, authController.register)
+// Login - URL - /login
+router.post('/login', authHelpers.loginRedirect, authController.login)
+// Logout - URL - /logout
+router.get('/logout', authHelpers.loginRequired, authController.logout)
 
 // SITE SECTION
 
@@ -72,7 +83,6 @@ router.get('/page/:id/edit', pageController.page_edit)
 // PROFILE ROUTER - CRUD
 
 // Add profile router - POST
-
 
 // View profile router - GET
 

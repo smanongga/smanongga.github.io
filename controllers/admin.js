@@ -1,8 +1,8 @@
 // ADMIN SECTION
 const async = require('async')
-const db = require('../db')
+const db = require('../db/admin')
 
-exports.index = function (req, res) {
+exports.index = (req, res) => {
   const contentType = req.params.id
   db.getAdminContent(contentType, req.app.get('connection'))
   .then((results) => {
@@ -14,7 +14,7 @@ exports.index = function (req, res) {
   })
 }
 
-exports.bulk = function (req, res, next) {
+exports.bulk = (req, res, next) => {
   const contentIds = req.body.contentId
 
   switch (req.body.bulkAction) {
@@ -53,7 +53,7 @@ exports.bulk = function (req, res, next) {
   }
 }
 
-exports.taxonomy = function (req, res) {
+exports.taxonomy = (req, res) => {
   db.getTaxonomy(req.app.get('connection'))
   .then((results) => {
     const viewData = {
@@ -67,6 +67,6 @@ exports.taxonomy = function (req, res) {
   })
 }
 
-exports.menu = function (req, res) {
+exports.menu = (req, res) => {
 
 }

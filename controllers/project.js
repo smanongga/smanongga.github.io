@@ -1,6 +1,6 @@
 //  PROJECT Controller
 var dateFormat = require('dateformat')
-var db = require('../db')
+var db = require('../db/project')
 
 function slugify (text) {
   return text.toString().toLowerCase()
@@ -12,7 +12,7 @@ function slugify (text) {
 }
 
 // Add Project
-exports.add = function (req, res) {
+exports.add = (req, res) => {
   const project = {
     title: req.body.title,
     slug: slugify(req.body.title),
@@ -54,24 +54,24 @@ exports.add = function (req, res) {
 }
 
 // View Project Detail
-exports.project_detail = function (req, res) {
+exports.project_detail = (req, res) => {
   const projectSlug = req.params.id
 
   db.getProjectPost(projectSlug, req.app.get('connection'))
   .then((result) => {
-    res.render('projectPost', result[0])
+    res.render('viewProject', result[0])
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
 }
 
-exports.project_edit = function (req, res) {
+exports.project_edit = (req, res) => {
   const projectSlug = req.params.id
 
   db.getProjectPost(projectSlug, req.app.get('connection'))
   .then((result) => {
-    res.render('addBlog', result[0])
+    res.render('addProject', result[0])
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
