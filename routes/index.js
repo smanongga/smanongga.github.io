@@ -1,4 +1,5 @@
 var express = require('express')
+var passport = require('passport')
 var router = express.Router()
 
 // Require controller modules
@@ -8,14 +9,14 @@ var blogController = require('../controllers/blog')
 var projectController = require('../controllers/project')
 var pageController = require('../controllers/page')
 var authController = require('../controllers/auth')
-var authHelpers = require('../controllers/auth/helpers')
+
 
 // SITE AUTHENTICATION
 
 // Register - URL - /register
 router.post('/register', authHelpers.loginRedirect, authController.register)
 // Login - URL - /login
-router.post('/login', authHelpers.loginRedirect, authController.login)
+router.post('/login', passport.authenticate('local'), authController.login)
 // Logout - URL - /logout
 router.get('/logout', authHelpers.loginRequired, authController.logout)
 
