@@ -15,5 +15,4 @@ test('GET /', (t) => {
       const $ = cheerio.load(res.text)
       t.is($('li').first().text(), 'Ambitious Aardvark (aardvark@example.org)')
     })
-
 })

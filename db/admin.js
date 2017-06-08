@@ -25,7 +25,14 @@ exports.deleteOperation = (id, contentType, connection) => {
 exports.getAdminContent = (contentType, connection) => {
   return connection(contentType)
   .join('users', 'users.id', `${contentType}.author`)
-  .select(`${contentType}.id as contentId`, 'title', 'status', 'type', 'published_date', 'users.name as name', 'slug')
+  .select(
+    `${contentType}.id as contentId`,
+    'title',
+    'status',
+    'type',
+    'published_date',
+    'users.name as name',
+    'slug')
   .orderByRaw(`${contentType}.id DESC`)
 }
 
