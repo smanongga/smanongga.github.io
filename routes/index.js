@@ -1,33 +1,15 @@
-var express = require('express')
-var passport = require('passport')
-var router = express.Router()
+const express = require('express')
+const router = express.Router()
 
 // Require controller modules
-var indexController = require('../controllers/index')
-var adminController = require('../controllers/admin')
-var blogController = require('../controllers/blog')
-var projectController = require('../controllers/project')
-var pageController = require('../controllers/page')
-var authController = require('../controllers/auth')
-
-
-// SITE AUTHENTICATION
-
-// Register - URL - /register
-router.post('/register', authHelpers.loginRedirect, authController.register)
-// Login - URL - /login
-router.post('/login', passport.authenticate('local'), authController.login)
-// Logout - URL - /logout
-router.get('/logout', authHelpers.loginRequired, authController.logout)
+const indexController = require('../controllers/index')
+const adminController = require('../controllers/admin')
+const blogController = require('../controllers/blog')
+const projectController = require('../controllers/project')
+const pageController = require('../controllers/page')
 
 // SITE SECTION
 
-// Frontpage - URL - /
-router.get('/', indexController.index)
-// Blog - URL - /blog
-router.get('/blog', indexController.blog)
-// Project - URL - /project
-router.get('/project', indexController.project)
 // Search - URL - /search
 router.get('/search', indexController.search)
 
@@ -50,8 +32,6 @@ router.get('/blog/add', function (req, res) {
 })
 // Add blog router - POST
 router.post('/blog/add', blogController.image, blogController.add)
-// View blog router - GET
-router.get('/blog/:id', blogController.blog_detail)
 // Edit blog router - GET
 router.get('/blog/:id/edit', blogController.blog_edit)
 
@@ -63,8 +43,6 @@ router.get('/project/add', function (req, res) {
 })
 // Add project router - POST
 router.post('/project/add', projectController.add)
-// View project router - GET
-router.get('/project/:id', projectController.project_detail)
 // Edit project router - GET
 router.get('/project/:id/edit', projectController.project_edit)
 
@@ -76,8 +54,6 @@ router.get('/page/add', function (req, res) {
 })
 // Add page router - POST
 router.post('/page/add', pageController.add)
-// View page router - GET
-router.get('/page/:id', pageController.page_detail)
 // Edit page router - GET
 router.get('/page/:id/edit', pageController.page_edit)
 

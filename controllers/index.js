@@ -1,7 +1,10 @@
-var db = require('../db/section')
+const dbAdmin = require('../db/admin')
+const dbBlog = require('../db/blog')
+const dbProject = require('../db/blog')
 
 exports.index = (req, res) => {
-  db.getRecentBlogs(req.app.get('connection'))
+  const connection = req.app.get('connection')
+  dbBlog.getRecentBlogs(connection)
   .then((results) => {
     const viewData = {
       siteTitle: 'S.Manongga',
@@ -14,7 +17,8 @@ exports.index = (req, res) => {
   })
 }
 exports.blog = (req, res) => {
-  db.getOldBlogs(req.app.get('connection'))
+  const connection = req.app.get('connection')
+  dbBlog.getOldBlogs(connection)
   .then(results => {
     const viewData = {
       siteTitle: 'S.Manongga',
@@ -28,7 +32,8 @@ exports.blog = (req, res) => {
 }
 
 exports.project = (req, res) => {
-  db.getProjects(req.app.get('connection'))
+  const connection = req.app.get('connection')
+  dbProject.getProjects(connection)
   .then(results => {
     const viewData = {
       siteTitle: 'S.Manongga',
@@ -42,8 +47,9 @@ exports.project = (req, res) => {
 }
 
 exports.search = (req, res) => {
-  var author = req.query.key
-  db.getAuthor(author, req.app.get('connection'))
+  const connection = req.app.get('connection')
+  const author = req.query.key
+  dbAdmin.getAuthor(author, connection)
   .then(function (results) {
     var data = []
     for (var prop in results) {

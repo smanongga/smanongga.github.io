@@ -47,3 +47,10 @@ exports.getTaxonomy = (connection) => {
   return connection('taxonomy_vocabulary')
   .select()
 }
+
+// Fetch
+exports.getAuthor = (author, connection) => {
+  return connection('users')
+  .where('users.name', 'like', `%${author}%`)
+  .select('users.name')
+}
