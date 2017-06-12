@@ -1,17 +1,17 @@
 import React from 'react'
 
-import BlogSummary from './BlogSummary'
+import BlogSummary from './blogs/BlogSummary'
 
 function RecentBlogs (props) {
   return (
-    <div>
+    <div className='container'>
       <h2 className='title'>Recent Blog Posts</h2>
       <div className='row'>
         <div className='col-sm-12 blog-main'>
           <div className='flex-box'>
-            {props.blogs.map(blog => {
+            {props.blogs.map((blog, i) => {
               return <BlogSummary
-                key={blog.id}
+                key={i}
                 blog={blog} />
             })}
           </div>

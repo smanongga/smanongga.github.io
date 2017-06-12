@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 function Header () {
   return (
-    <nav className='navbar navbar-default navbar-static-top'>
+    <nav className='navbar navbar-default navbar-static-top frontpage'>
       <div className='container'>
         <div className='navbar-header'>
           <button type='button' className='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
@@ -19,7 +19,7 @@ function Header () {
             <li className='active'><a href='/'>Home</a></li>
             <li><Link to='/page/about-me'>About</Link></li>
             <li><Link to='/projects'>Projects</Link></li>
-            <li><Link to='/blog'>Blog</Link></li>
+            <li><Link to='/blogs'>Blogs</Link></li>
           </ul>
         </div>
       </div>

@@ -10,8 +10,7 @@ const dbPage = require('../db/page')
 
 router.use(bodyParser.json())
 
-// Blog CRUD
-router.get('/blogs', (req, res) => {
+router.get('/recent-blogs', (req, res) => {
   const connection = req.app.get('connection')
   dbBlog.getRecentBlogs(connection)
   .then((data) => {
@@ -19,7 +18,16 @@ router.get('/blogs', (req, res) => {
   })
 })
 
-router.get('/blog/:id', (req, res) => {
+router.get('/blogs', (req, res) => {
+  const connection = req.app.get('connection')
+  dbBlog.getOldBlogs(connection)
+  .then((data) => {
+    res.json(convertKeys.toCamel(data))
+  })
+})
+
+// Blog CRUD
+router.get('/blogs/:id', (req, res) => {
   const connection = req.app.get('connection')
   const blogSlug = req.params.id
   dbBlog.getBlogPost(blogSlug, connection)
@@ -28,7 +36,7 @@ router.get('/blog/:id', (req, res) => {
   })
 })
 
-router.get('/blog/:id/edit', (req, res) => {
+router.get('/blogs/:id/edit', (req, res) => {
   const connection = req.app.get('connection')
   const blogSlug = req.params.id
   dbBlog.getBlogPost(blogSlug, connection)

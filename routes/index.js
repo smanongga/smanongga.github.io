@@ -33,7 +33,7 @@ router.get('/blog/add', function (req, res) {
 // Add blog router - POST
 router.post('/blog/add', blogController.image, blogController.add)
 // Edit blog router - GET
-router.get('/blog/:id/edit', blogController.blog_edit)
+router.get('/blogs/:id/edit', blogController.blog_edit)
 
 // PROJECT ROUTER - CRUD
 
