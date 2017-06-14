@@ -2,6 +2,7 @@
 
 // Add Page
 exports.addPagePost = (page, connection) => {
+  console.log(page)
   return connection('users')
   .where('name', '=', page.author)
   .then((result) => {
@@ -10,6 +11,7 @@ exports.addPagePost = (page, connection) => {
     .insert({
       'author': authorId,
       'title': page.title,
+      'slug': page.slug,
       'body': page.body,
       'status': page.status,
       'published_date': page.date,

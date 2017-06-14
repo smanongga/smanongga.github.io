@@ -1,5 +1,16 @@
 var express = require('express')
+var multer = require('multer')
 var router = express.Router()
+
+var storage = multer.diskStorage({
+  destination: function (request, file, callback) {
+    callback(null, './public/images/blog')
+  },
+  filename: function (request, file, callback) {
+    callback(null, file.originalname)
+  }
+})
+var upload = multer({storage: storage})
 
 // Require controller modules
 var indexController = require('../controllers/index')
@@ -48,7 +59,7 @@ router.get('/blog/add', function (req, res) {
   res.render('addBlog', {title: 'Create Blog'})
 })
 // Add blog router - POST
-router.post('/blog/add', blogController.image, blogController.add)
+router.post('/blog/add', upload.single('image'), blogController.add)
 // View blog router - GET
 router.get('/blog/:id', blogController.blog_detail)
 // Edit blog router - GET

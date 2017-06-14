@@ -20,9 +20,10 @@ exports.add = (req, res) => {
     date: dateFormat(req.body.publishedDate, 'yyyy-mm-dd 08:00:00'),
     status: req.body.status
   }
+
   // Form validation
   req.checkBody('title', 'Title is required').notEmpty()
-  req.checkBody('author', 'Author is required').notEmpty()
+  req.checkBody('typeahead', 'Author is required').notEmpty()
   req.checkBody('publishedDate', 'Published date is required').notEmpty()
   req.checkBody('status', 'Status is required').notEmpty()
 
@@ -38,7 +39,7 @@ exports.add = (req, res) => {
   // Data from form is valid
     db.addPagePost(page, req.app.get('connection'))
     .then(results => {
-      res.redirect(`/${results[0].id}`)
+      res.redirect(`/page/${results[0].slug}`)
     })
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR: ' + err.message)

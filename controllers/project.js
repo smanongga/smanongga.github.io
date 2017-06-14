@@ -16,7 +16,7 @@ exports.add = (req, res) => {
   const project = {
     title: req.body.title,
     slug: slugify(req.body.title),
-    author: req.body.author,
+    author: req.body.typeahead,
     description: req.body.description,
     goals: req.body.goals,
     outcome: req.body.outcome,
@@ -26,7 +26,7 @@ exports.add = (req, res) => {
 
   // Form validation
   req.checkBody('title', 'Title is required').notEmpty()
-  req.checkBody('author', 'Author is required').notEmpty()
+  req.checkBody('typeahead', 'Author is required').notEmpty()
   req.checkBody('publishedDate', 'Published date is required').notEmpty()
   req.checkBody('status', 'Status is required').notEmpty()
 
