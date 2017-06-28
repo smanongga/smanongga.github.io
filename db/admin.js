@@ -30,13 +30,13 @@ exports.getAdminContent = (contentType, connection) => {
 }
 
 // Manage Taxonomy & Tags - URL - /admin/taxonomies
-
+exports.getTaxonomy = (connection) => {
+  return connection('taxonomy_vocabulary')
+  .select()
+  .orderByRaw(`${taxonomy_vocabulary}.name DESC`)
+}
 // Manage Menu Structure - URL - /admin/menus
 
 // Manage Users - URL - /admin/users
 
 // TAXONOMY SQL
-exports.getTaxonomy = (connection) => {
-  return connection('taxonomy_vocabulary')
-  .select()
-}
