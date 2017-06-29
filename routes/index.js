@@ -18,8 +18,8 @@ var adminController = require('../controllers/admin')
 var blogController = require('../controllers/blog')
 var projectController = require('../controllers/project')
 var pageController = require('../controllers/page')
-var authController = require('../controllers/auth')
-var authHelpers = require('../controllers/auth/helpers')
+var taxonomyController = require('../controllers/taxonomy')
+
 
 // SITE AUTHENTICATION
 
@@ -51,6 +51,11 @@ router.post('/admin/:id/content', adminController.bulk)
 router.get('/admin/taxonomy', adminController.taxonomy)
 
 // Manage Menu
+
+// TAXONOMY ROUTER - CRUD
+
+// add taxonomy router - post
+router.post('/taxonomy/add', taxonomyController.add)
 
 // BLOG ROUTER - CRUD
 
