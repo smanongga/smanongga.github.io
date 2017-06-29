@@ -21,15 +21,6 @@ var pageController = require('../controllers/page')
 var taxonomyController = require('../controllers/taxonomy')
 
 
-// SITE AUTHENTICATION
-
-// Register - URL - /register
-router.post('/register', authHelpers.loginRedirect, authController.register)
-// Login - URL - /login
-router.post('/login', authHelpers.loginRedirect, authController.login)
-// Logout - URL - /logout
-router.get('/logout', authHelpers.loginRequired, authController.logout)
-
 // SITE SECTION
 
 // Frontpage - URL - /
