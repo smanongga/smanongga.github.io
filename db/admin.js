@@ -35,6 +35,14 @@ exports.getTaxonomy = (connection) => {
   .select()
   .orderByRaw(`${taxonomy_vocabulary}.name DESC`)
 }
+
+exports.addTaxonomy = (taxonomy, connection) => {
+  return connection('taxonomy_vocabulary')
+  .insert({
+    'title': blog.title,
+    'description': blog.body})
+  .select()
+}
 // Manage Menu Structure - URL - /admin/menus
 
 // Manage Users - URL - /admin/users
