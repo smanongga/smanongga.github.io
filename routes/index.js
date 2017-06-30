@@ -46,6 +46,9 @@ router.get('/admin/taxonomy', adminController.taxonomy)
 // TAXONOMY ROUTER - CRUD
 
 // add taxonomy router - post
+router.get('/taxonomy/add', function (req, res) {
+  res.render('addTaxonomy', {title: 'Create Taxonomy'})
+})
 router.post('/taxonomy/add', taxonomyController.add)
 
 // BLOG ROUTER - CRUD
