@@ -56,6 +56,7 @@ exports.seed = function (knex, Promise) {
           status: 'Published',
           published_date: '2017-03-01 08:00:00'},
         {id: 6,
+          tags: 1,
           type: 'blog',
           author: 1,
           title: 'Technical Blog - Mobile Design and Frameworks',
