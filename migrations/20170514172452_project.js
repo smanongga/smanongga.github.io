@@ -3,8 +3,6 @@ exports.up = function (knex, Promise) {
   return knex.schema.createTable('projects', function (table) {
     table.increments('id').primary()
     table.string('type')
-    table.integer('tags').unsigned()
-    table.foreign('tags').references('taxonomy_vocabulary.id')
     table.string('title')
     table.string('slug').unique()
     table.integer('author').unsigned()
