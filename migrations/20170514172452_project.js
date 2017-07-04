@@ -7,6 +7,7 @@ exports.up = function (knex, Promise) {
     table.string('slug').unique()
     table.integer('author').unsigned()
     table.foreign('author').references('users.id')
+    table.string('image')
     table.text('description', 'longtext')
     table.text('goals', 'longtext')
     table.text('requirements', 'longtext')
