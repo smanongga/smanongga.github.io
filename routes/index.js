@@ -20,7 +20,6 @@ var projectController = require('../controllers/project')
 var pageController = require('../controllers/page')
 var taxonomyController = require('../controllers/taxonomy')
 
-
 // SITE SECTION
 
 // Frontpage - URL - /
