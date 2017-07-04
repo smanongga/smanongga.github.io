@@ -1,18 +1,16 @@
 var db = require('../db/section')
 
 exports.index = (req, res) => {
-  db.getRecentBlogs(req.app.get('connection'))
+  db.getFrontpageContent(req.app.get('connection'))
   .then((results) => {
-    const viewData = {
-      siteTitle: 'S.Manongga',
-      blog: results
-    }
-    res.render('index', viewData)
+    console.log(results)
+    res.render('index', results)
   })
   .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
 }
+
 exports.blog = (req, res) => {
   db.getOldBlogs(req.app.get('connection'))
   .then(results => {
