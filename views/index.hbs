@@ -1,15 +1,62 @@
-{{> header}}
-<div class="container">
-      <div class="col-sm-8 blog-main">
-        {{> blog_entries}}
+<nav class="navbar navbar-default navbar-static-top frontpage">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse navbar-right">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/blog">Blog</a></li>
+      </ul>
+    </footer>
+
+  </div><!--/.nav-collapse -->
+</div>
+</nav>
+
+<div class="col-sm-12 hero-subheader">
+  <video width="300" height="150" autoplay="autoplay" loop="loop" class="video">
+    <source src="/video/Aloha-Mundo.mp4" type="video/mp4" />
+    <source src="/video/Aloha-Mundo.ogv" type="video/ogg" />
+    <source src="/video/Aloha-Mundo.webm" type="video/webm" />
+  </video>
+  <div class="container">
+    <div class="message">
+    <center>
+    <h1 class="lead">Kia Ora!</h1>
+    <h2 class="follow">My name is <span class="red">Sam Manongga</span>. <br />I'm a <span class="red">web developer</span> living in <span class="red">Auckland, New Zealand</span></h2>
+    <!-- <p class="intro">Read my <span class="red">[</span>blog posts<span class="red">]</span>  ,  see <span class="red">[</span>my work<span class="red">]</span>  or  <span class="red">[</span>get in touch<span class="red">]</span>.</p> -->
+  </center>
+</div>
+  </div>
+</div>
+<div class="container blog-frontpage">
+  <h2 class="title">Recent Blog Posts</h2>
+  <div class="row">
+    <div class="col-sm-12 blog-main">
+      <div class="flex-box">
+      {{#each blog}}
+      <div class="blog-post">
+       <h2 class="blog-post-title"><a class="blog" href="/blog/{{slug}}">{{title}}</a></h2>
+      <a href="/blog/{{slug}}"><img src="{{image}}" alt="{{title}}"></a>
+      <div class="blog-post-entry">
+      <p>{{summary}}</p>
+      <hr>
+      <a class="read-more" href="/blogs/{{slug}}">READ MORE &raquo;</a>
       </div>
-      <div class="col-sm-4 blog-sidebar">
-          <div class="sidebar-module sidebar-module-inset">
-            {{> about_me}}
-          </div>
-          <div class="sidebar-module">
-            {{> social_media}}
-          </div>
-      </div>
+      </div><!-- /.blog-post -->
+      {{/each}}
+    </div>
+    </div>
+  </div>
+  <h2 class="title">Recent Projects</h2>
 </div> <!-- / .container -->
 {{> footer}}

@@ -1,0 +1,63 @@
+{{> header}}
+<script type="text/javascript">
+$(document).ready(function(){
+  $('input.typeahead').typeahead({
+    name: 'typeahead',
+    remote: 'http://localhost:8080/search?key=%QUERY',
+    limit: 10
+  });
+});
+</script>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+      {{> adminMenu}}
+  </div>
+  <div class="col-md-10">
+    <h2>{{title}}</h2>
+    {{#if errors}}
+    <div class="alert alert-danger">
+      <ul>
+    {{#each errors}}
+        <li>{{msg}}</li>
+    {{/each}}
+   </ul>
+    </div>
+{{/if}}
+    <form class="" action="/page/add" method="post">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" value="" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>Body</label>
+        <textarea name="body" id="body" type="text" value="" class="form-control"></textarea>
+        <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace( 'body' );
+        </script>
+      </div>
+
+      <div class="form-group">
+        <label>Author</label>
+        <input class="typeahead tt-query" spellcheck="false" value="{{author}}" autocomplete="off" name="typeahead" type="text" />
+      </div>
+      <div class="form-group">
+        <label>Publish Options</label>
+        <select name="status" class="form-control">
+          <option value="Draft">Draft</option>
+          <option value="Published">Published</option>
+          <option value="Unpublished">Unpublished</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Published Date</label>
+        <input type="date" class="form-control" name="publishedDate">
+      </div>
+      <input type="submit" name="add" value="Submit" class="btn btn-primary">
+    </form>
+  </div>
+</div>
+</div> <!-- / .container -->
+{{> footer}}

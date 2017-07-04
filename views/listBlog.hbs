@@ -1,0 +1,34 @@
+{{> header}}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 blog-main">
+      {{#each blog}}
+      <div class="blog-post">
+       <h2 class="blog-post-title"><a class="blog" href="/blog/{{slug}}">{{title}}</a></h2>
+      <div class="blog-post-meta"><i class="fa fa-user-circle-o" aria-hidden="true"></i>
+      By <a href="/users/{{profile_id}}">{{first_name}} {{last_name}}</a></div>
+      <div class="blog-post-meta"><i class="fa fa-calendar" aria-hidden="true"></i>
+      {{viewFormat published_date}}</div>
+
+      <div class="blog-post-meta"><i class="fa fa-tags" aria-hidden="true"></i> {{tags}}
+      </div>
+      <a href="/blog/{{slug}}"><img src="{{image}}" alt="{{title}}"></a>
+      <div class="blog-post-entry">
+      <p>{{summary}}</p>
+      <hr>
+      <a class="read-more" href="/blogs/{{slug}}">READ MORE &raquo;</a>
+      </div>
+      </div><!-- /.blog-post -->
+      {{/each}}
+    </div>
+    <div class="col-sm-4 blog-sidebar">
+      <div class="sidebar-module sidebar-module-inset">
+        {{> about_me}}
+      </div>
+      <div class="sidebar-module">
+        {{> social_media}}
+      </div>
+    </div>
+  </div>
+</div> <!-- / .container -->
+{{> footer}}

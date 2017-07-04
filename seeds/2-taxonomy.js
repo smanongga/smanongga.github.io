@@ -5,9 +5,8 @@ exports.seed = function (knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('taxonomy_vocabulary').insert([
-        {id: 1, title: 'Technical Blog', description: ''},
-        {id: 2, title: 'Cultural Blog', description: ''},
-        {id: 3, title: 'Drupal', description: ''}
+        {id: 1, title: 'Topics', description: ''},
+        {id: 2, title: 'Technologies', description: ''}
       ])
     })
 }
