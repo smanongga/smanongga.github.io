@@ -12,6 +12,13 @@ exports.getRecentBlogs = (connection) => {
   .where('blogs.status', 'Published')
 }
 
+// Get recent Project - URL - frontpage
+exports.getRecentProject = (connection) => {
+  return connection('projects')
+  .select('title', 'description', 'image')
+  .orderByRaw('id DESC').limit(1)
+}
+
 // Get old blog post - URL - /blog
 exports.getOldBlogs = (connection) => {
   return connection('blogs')
