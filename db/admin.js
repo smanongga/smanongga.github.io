@@ -39,8 +39,8 @@ exports.getTaxonomy = (connection) => {
 exports.addTaxonomy = (taxonomy, connection) => {
   return connection('taxonomy_vocabulary')
   .insert({
-    'title': blog.title,
-    'description': blog.body})
+    'title': taxonomy.title,
+    'description': taxonomy.body})
   .select()
 }
 // Manage Menu Structure - URL - /admin/menus
