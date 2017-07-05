@@ -4,11 +4,6 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const expressValidator = require('express-validator')
 const hbs = require('express-handlebars')
-const passport = require('passport')
-const flash = require('connect-flash')
-const expressSession = require('express-session')
-const Store = require('express-session').Store
-const BetterMemoryStore = require(path.join(__dirname), 'memory')
 
 const index = require('./routes/index')
 
@@ -39,16 +34,6 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(expressValidator())
-app.use(expressSession({
-  name: 'JSESSION',
-  secret: 'MYSECRETISVERYSECRET',
-  resave: true,
-  saveUninitialized: true
-}))
-
-app.use(flash())
-app.use(passport.initialize())
-app.use(passport.session())
 
 // Routes
 
