@@ -7,12 +7,13 @@ const router = express.Router()
 const dbBlog = require('../db/blog')
 const dbProject = require('../db/project')
 const dbPage = require('../db/page')
+const dbSection = require('../db/section')
 
 router.use(bodyParser.json())
 
-router.get('/recent-blogs', (req, res) => {
+router.get('/frontpage', (req, res) => {
   const connection = req.app.get('connection')
-  dbBlog.getRecentBlogs(connection)
+  dbSection.getFrontpageContent(connection)
   .then((data) => {
     res.json(convertKeys.toCamel(data))
   })

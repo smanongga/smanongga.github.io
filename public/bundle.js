@@ -4981,9 +4981,10 @@ var _superagent2 = _interopRequireDefault(_superagent);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function getRecentBlogs() {
-  return _superagent2.default.get('/api/v1/recent-blogs').then(function (data) {
-    var blogs = data.body;
-    return blogs;
+  return _superagent2.default.get('/api/v1/frontpage').then(function (data) {
+    var content = data.body;
+    return content;
+    console.log(content);
   }).catch(function (err) {
     throw Error('Cannot GET Posts!');
   });

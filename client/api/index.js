@@ -1,10 +1,11 @@
 import request from 'superagent'
 
 export function getRecentBlogs () {
-  return request.get('/api/v1/recent-blogs')
+  return request.get('/api/v1/frontpage')
     .then(data => {
-      const blogs = data.body
-      return blogs
+      const content = data.body
+      return content
+      console.log(content)
     })
     .catch(err => {
       throw Error('Cannot GET Posts!')

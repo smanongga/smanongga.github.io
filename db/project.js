@@ -3,7 +3,6 @@
 // Get list of project - URL - /projects
 exports.getProjects = (connection) => {
   return connection('projects')
-  .join('taxonomy_vocabulary', 'taxonomy_vocabulary.id', 'projects.tags')
   .select(
     'projects.title as projectTitle',
     'projects.description as projectDescription',
