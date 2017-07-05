@@ -64,9 +64,6 @@ nav .navbar-nav ul.dropdown-menu .dropdown-header {
   height:65px;
   width:320px;
 }
-.container {
-  margin-top:60px;
-}
 .blog-post, .sidebar-module {
   background:#ffffff;
   border:1px solid #f1f1f1;
@@ -199,15 +196,9 @@ footer ul.menu li a {
 .flex-grid-fifth .project-tag {
   font-size:12px;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> f72de33d9fb6c7dba21bd4878d896496b51f9581
 form {
   margin-bottom:50px;
 }
-
-
 
 .twitter-typeahead {
     width: 100%;
@@ -282,7 +273,6 @@ form {
 
 .tt-suggestion p {
     margin: 0;
-<<<<<<< HEAD
 }
 
 h2.title {
@@ -316,9 +306,6 @@ span.red {
   position: relative;
       z-index: 1;
     padding: 100px 0 100px 0;
-}
-.blog-frontpage {
-  padding: 450px 0 85px 0;
 }
 .blog-frontpage h2.title {
   font-weight:bold;
@@ -375,5 +362,17 @@ ul.add-content li {
   width:48%;
   margin:10px;
 }
-=======
->>>>>>> f72de33d9fb6c7dba21bd4878d896496b51f9581
+.project {
+  background:#FF0900;
+  color:#ffffff;
+  text-align:center;
+}
+.project .container {
+  padding-bottom:40px;
+  padding-top:20px;
+}
+.project .content {
+  text-align:left;
+}
+.project .image {
+}

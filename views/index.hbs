@@ -16,8 +16,6 @@
         <li><a href="/projects">Projects</a></li>
         <li><a href="/blog">Blog</a></li>
       </ul>
-    </footer>
-
   </div><!--/.nav-collapse -->
 </div>
 </nav>
@@ -38,12 +36,30 @@
 </div>
   </div>
 </div>
-<div class="container blog-frontpage">
-  <h2 class="title">Recent Blog Posts</h2>
+<div class="project">
+<div class="container">
+  <h2 class="title">Recent Project</h2>
+  <div class="row">
+      {{#each project}}
+    <div class="col-sm-6">
+      <div class='image'>
+      <a href="/project/{{slug}}"><img src="{{image}}" alt="{{title}}"></a>
+    </div>
+    </div>
+    <div class="col-sm-6 content">
+       <h2><a class="blog" href="/project/{{slug}}">{{title}}</a></h2>
+        <p>{{description}}</p>
+    </div>
+      {{/each}}
+  </div>
+</div> <!-- / .container -->
+</div>
+<div class="container">
+  <h2 class="title">Blog Posts</h2>
   <div class="row">
     <div class="col-sm-12 blog-main">
       <div class="flex-box">
-      {{#each blog}}
+      {{#each blogs}}
       <div class="blog-post">
        <h2 class="blog-post-title"><a class="blog" href="/blog/{{slug}}">{{title}}</a></h2>
       <a href="/blog/{{slug}}"><img src="{{image}}" alt="{{title}}"></a>
@@ -57,6 +73,5 @@
     </div>
     </div>
   </div>
-  <h2 class="title">Recent Projects</h2>
 </div> <!-- / .container -->
 {{> footer}}
