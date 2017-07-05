@@ -1,6 +1,7 @@
 const dbAdmin = require('../db/admin')
 const dbBlog = require('../db/blog')
 const dbProject = require('../db/blog')
+const dbSection = require('../db/section')
 
 exports.index = (req, res) => {
   const connection = req.app.get('connection')
