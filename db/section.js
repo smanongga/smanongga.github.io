@@ -15,7 +15,7 @@ function getRecentBlogs (connection) {
 // Get recent Project - URL - frontpage
 function getRecentProject (connection) {
   return connection('projects')
-  .select('title', 'description')
+  .select('title', 'description', 'image', 'slug')
   .orderByRaw('id DESC').limit(1)
 }
 
