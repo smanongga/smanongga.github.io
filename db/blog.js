@@ -31,7 +31,8 @@ exports.addBlogPost = (blog, connection) => {
 exports.getBlogPost = (blogSlug, connection) => {
   return connection('blogs')
   .join('users', 'users.id', 'blogs.author')
-  .join('taxonomy_vocabulary', 'taxonomy_vocabulary.id', 'blogs.tags')
+  .join('taxonomy_blog', 'blog_id', 'blogs.id')
+  .join('taxonomy_term_data', 'taxonomy_term_data.id', 'term_id')
   .join('profile', 'profile.id', 'users.profile_id')
   .where('blogs.slug', blogSlug)
   .select(
@@ -44,7 +45,7 @@ exports.getBlogPost = (blogSlug, connection) => {
     'profile.first_name',
     'profile.last_name',
     'profile.id as profile_id',
-    'taxonomy_vocabulary.title as tags',
+    'taxonomy_term_data.title as tags',
     'blogs.image',
     'users.name as author')
 }
